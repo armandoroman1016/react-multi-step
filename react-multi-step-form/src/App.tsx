@@ -14,6 +14,7 @@ const Test = () => {
     const handleChangle = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
         updateFormCtx(ctx, e.target.name, e.target.value);
+        console.log(ctx);
     };
 
     return (
