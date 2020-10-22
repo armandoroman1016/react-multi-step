@@ -1,55 +1,28 @@
 import * as React from "react";
 import * as CSS from "csstype";
-import FormStep from "./FormStep";
 
-import { FormStepProps } from "./FormStep";
+const FormContext = React.createContext({});
+
+interface Step {
+    component: React.ComponentType;
+    name?: string;
+}
+
 interface FormContainerProps {
     heading?: string;
     progressBar?: boolean;
     styles?: CSS.Properties;
-    headingProps?: HeadingProps;
-    children: React.ReactNode;
+    children?: React.ReactNode;
+    steps: Step[];
 }
 
-interface HeadingProps {
-    className?: string;
-    styles?: CSS.Properties;
-}
-const formStepFiller: FormStepProps = {
-    fields: [
-        {
-            label: "This is my text",
-            id: "1",
-            type: "text",
-        },
-        {
-            label: "Filler",
-            id: "2",
-            type: "text",
-        },
-        {
-            label: "Lorem Ipsum",
-            id: "3",
-            type: "password",
-        },
-        {
-            label: "This is my text",
-            id: "4",
-            type: "url",
-        },
-    ],
-};
-
-const FormContainer = ({ heading, progressBar, styles, headingProps, children }: FormContainerProps) => {
+const FormContainer = ({ heading, progressBar, styles, children, steps }: FormContainerProps) => {
     return (
         <div style={styles || {}}>
-            {heading && (
-                <p className={headingProps?.className} style={headingProps?.styles}>
-                    {heading}
-                </p>
-            )}
-            {children}
-            <FormStep fields={formStepFiller.fields} />
+            {steps &&
+                steps.map(({ component: Step, name }, idx) => {
+                    return <Step key={idx} />;
+                })}
         </div>
     );
 };
