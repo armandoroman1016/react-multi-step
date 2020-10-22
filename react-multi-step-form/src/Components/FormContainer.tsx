@@ -1,8 +1,6 @@
 import * as React from "react";
 import * as CSS from "csstype";
 
-const FormContext = React.createContext({});
-
 interface Step {
     component: React.ComponentType;
     name?: string;

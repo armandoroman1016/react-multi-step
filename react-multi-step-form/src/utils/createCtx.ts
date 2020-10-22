@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function createCtx<T extends Record<string, unknown> | null>() {
+export function createCtx<T extends Record<string, unknown> | null>() {
     const ctx = React.createContext<T | undefined>(undefined);
 
     function useCtx() {
