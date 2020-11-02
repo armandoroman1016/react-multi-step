@@ -2,19 +2,19 @@ import React from "react";
 import "./App.css";
 import FormContainer from "./Components/FormContainer";
 import { createCtx } from "./utils/createCtx";
-import { updateFormCtx } from "./utils/updateCtx";
+// import { updateFormCtx } from "./utils/updateCtx";
 
-const [useFormContext, CurrentFormProvider] = createCtx<Record<string, unknown>>();
+const [formCtx, FormProvider] = createCtx({});
 
 const Test = () => {
     const [val, setVal] = React.useState("");
 
-    const ctx = useFormContext();
+    const { state, update } = React.useContext(formCtx);
+    console.log("state", state);
 
     const handleChangle = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
-        updateFormCtx(ctx, e.target.name, e.target.value);
-        console.log(ctx);
+        update(e.target.value);
     };
 
     return (
@@ -30,9 +30,9 @@ const steps = [{ component: Test }];
 function App() {
     return (
         <div className="App">
-            <CurrentFormProvider value={{}}>
+            <FormProvider>
                 <FormContainer steps={steps} />
-            </CurrentFormProvider>
+            </FormProvider>
         </div>
     );
 }
