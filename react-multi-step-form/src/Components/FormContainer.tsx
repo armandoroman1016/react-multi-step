@@ -32,9 +32,6 @@ const FormContainer = ({ heading, progressBar, styles, children, steps }: FormCo
         }
     },[steps])
 
-    const activeForm = useRef(null)
-
-
     return (
         <div style={styles || {}} className="multi-step-form-container">
             {steps &&

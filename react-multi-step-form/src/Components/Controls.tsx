@@ -25,7 +25,6 @@ const Controls = (props: ControlProps) => {
         else if(command === "decrement"){
             if(currentPosition > 0) update({...state, currentPosition: currentPosition -= 1})
         }
-        console.log(state)
     }
 
     return (
