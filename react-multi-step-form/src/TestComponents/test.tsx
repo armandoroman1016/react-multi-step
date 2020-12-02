@@ -3,99 +3,90 @@ This file is for development purposes only.
 */
 
 import React from "react";
-import {formCtx} from '../Contexts/FormContext'
-
+import * as CSS from 'csstype'
+import { useMultiStep } from "../utils/useMultiStep"
 
 const Test = () => {
     const [val, setVal] = React.useState("");
 
-    const { state, update } = React.useContext(formCtx);
+    const { stepForm } = useMultiStep()
 
     const handleChange = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
-        let { inputFields } = state 
-        inputFields = {...inputFields, [e.target.name]: e.target.value}
-
-        // updates the ctx object with the field name and values as key value pairs
-        update({...state, inputFields});
+        stepForm.updateFormValues(e.target.name, e.target.value)
 
     };
 
     return (
-        <div>
+        <form>
             <p>Test Step One</p>
+            <label>Hello</label>
             <input type="text" value={val} name="hello" onChange={handleChange} />
-        </div>
+        </form>
     );
 };
 
 const Test2 = () => {
     const [val, setVal] = React.useState("");
 
-    const { state, update } = React.useContext(formCtx);
+    const { stepForm } = useMultiStep()
     
-
     const handleChange = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
-        let { inputFields } = state 
-        inputFields = {...inputFields, [e.target.name]: e.target.value}
-
-        // updates the ctx object with the field name and values as key value pairs
-        update({...state, inputFields});
+        stepForm.updateFormValues(e.target.name, e.target.value)
     };
 
     return (
-        <div>
+        <form>
             <p>Test Step Two</p>
+            <label>World</label>
             <input type="text" value={val} name="world" onChange={handleChange} />
-        </div>
+        </form>
     );
 };
 
 const Test3 = () => {
     const [val, setVal] = React.useState("");
 
-    const { state, update } = React.useContext(formCtx);
+    const { stepForm } = useMultiStep()
 
     const handleChange = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
-
-        let { inputFields } = state 
-        inputFields = {...inputFields, [e.target.name]: e.target.value}
-
-        // updates the ctx object with the field name and values as key value pairs
-        update({...state, inputFields});
+        stepForm.updateFormValues(e.target.name, e.target.value)
     };
 
     return (
-        <div>
+        <form>
             <p>Test Step Three</p>
+            <label>Foo</label>
             <input type="text" value={val} name="foo" onChange={handleChange} />
-        </div>
+        </form>
     );
 };
 
 const Test4 = () => {
     const [val, setVal] = React.useState("");
 
-    const { state, update } = React.useContext(formCtx);
+    const { stepForm } = useMultiStep();
 
     const handleChange = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
-
-        let { inputFields } = state 
-        inputFields = {...inputFields, [e.target.name]: e.target.value}
-
-        // updates the ctx object with the field name and values as key value pairs
-        update({...state, inputFields});
-        
+        stepForm.updateFormValues(e.target.name, e.target.value)
     };
 
+    const help = () => {
+        const packet = stepForm.onComplete()
+        console.log(packet)
+        return packet
+    }
+
     return (
-        <div>
+        <form>
             <p>Test Step Four</p>
-            <input type="text" value={val} name="null" onChange={handleChange} />
-        </div>
+            <label>Bar</label>
+            <input type="text" value={val} name="null" onChange={handleChange}/>
+            <button type="submit" onClick = {help}>SUBMIT</button>
+        </form>
     );
 };
 

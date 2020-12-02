@@ -1,11 +1,27 @@
 .form-step{
+    position: relative;
+    width: 100%;
+    height: 100px;
     display: flex;
-    justify-content: space-between;
-    align-content: space-between;
-    position: absolute;
+    align-items: center;
+    justify-content: center;
     visibility: hidden;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0ms ease;
+    margin-top: 100px;
+}
+
+.form-step:not(:first-child){
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .form-step.active{
-    visibility: unset;
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    transition-duration: 600ms;
+
 }

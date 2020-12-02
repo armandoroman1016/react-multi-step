@@ -1,23 +1,19 @@
 import React from "react";
 import "./App.css";
-import FormContainer from "./Components/FormContainer";
-// import { updateFormCtx } from "./utils/updateCtx";
-import {FormProvider} from './Contexts/FormContext'
+import { MultiStep } from "./Components/MultiStep";
 import {Test, Test2, Test3, Test4} from './TestComponents/test'
+
 
 function App() {
     return (
         <div className="App">
-            <FormProvider>
-                <FormContainer 
-                steps={[
-                    {component: Test, name: "Number one"},
-                    {component: Test2, name: "Number two"},
-                    {component: Test3, name: "Number three"},
-                    {component: Test4, name: "Number four"},
-                ]} 
-                />
-            </FormProvider>
+            <MultiStep 
+            steps={[
+                {component: Test, name: "Hello"},
+                {component: Test2, name: "Number two"},
+                {component: Test3, name: "Number three"},
+                {component: Test4, name: "Number four"},
+            ]} />
         </div>
     );
 }

@@ -5,10 +5,11 @@ import FormStep from "./FormStep"
 import Controls from "./Controls";
 
 import {formCtx} from '../Contexts/FormContext'
+import ProgressBar from "./ProgressBar";
 
 interface Step {
     component: React.ComponentType;
-    name?: string;
+    name: string;
 }
 
 interface FormContainerProps {
@@ -34,11 +35,12 @@ const FormContainer = ({ heading, progressBar, styles, children, steps }: FormCo
 
     return (
         <div style={styles || {}} className="multi-step-form-container">
+            <ProgressBar />
             {steps &&
                 steps.map(({ component: Step, name }, idx) => {
                     return <FormStep component={Step} stepIndex={idx} key={idx}/>;
                 })}
-            <Controls currentIndex={state.currentPosition} maxIndex={(steps && steps.length) || 0} />
+            <Controls/>
         </div>
     );
 };
