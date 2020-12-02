@@ -10,7 +10,9 @@ interface FormContext {
     onNext: () => void,
     onComplete: () => Object,
     updateFormValues: (fieldName: string, fieldValue: string) => void,
-    errors: boolean
+    errors: boolean,
+    stepNames: string[],
+    addStepName: (stepName: string) => void
 }
 
 const [formCtx, FormProvider] = createCtx<FormContext>({
@@ -28,6 +30,10 @@ const [formCtx, FormProvider] = createCtx<FormContext>({
     },
     updateFormValues: function(fieldName, fieldValue){
         this.inputFields = {...this.inputFields, [fieldName]: fieldValue}
+    },
+    stepNames: [],
+    addStepName: function(stepName){
+        this.stepNames.push(stepName)
     }
 })
 

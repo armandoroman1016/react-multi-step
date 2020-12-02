@@ -4,9 +4,8 @@ import "./FormContainer.scss"
 import FormStep from "./FormStep"
 import Controls from "./Controls";
 
-import {formCtx} from '../Contexts/FormContext'
 import ProgressBar from "./ProgressBar";
-
+import { useMultiStep } from '../utils/useMultiStep'
 interface Step {
     component: React.ComponentType;
     name: string;
@@ -24,12 +23,13 @@ const {useEffect, useRef} = React
 
 const FormContainer = ({ heading, progressBar, styles, children, steps }: FormContainerProps) => {
 
-    const { state, update } = React.useContext(formCtx);
+    const {stepForm, updateMultiStep} = useMultiStep()
 
     useEffect(() => {
         if(steps){
             let maxPosition = steps.length - 1
-            update({...state, maxPosition})
+            updateMultiStep({...stepForm, maxPosition})
+            steps.forEach(step => stepForm.addStepName(step.name))
         }
     },[steps])
 

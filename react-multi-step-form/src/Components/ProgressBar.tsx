@@ -1,19 +1,32 @@
 import * as React from "react";
 import * as CSS from "csstype";
 
-import {formCtx} from '../Contexts/FormContext'
-
+import {useMultiStep} from "../utils/useMultiStep"
 interface ProgressBarProps {
     fillColor?: string;
     className?: string;
 }
 
+const { useEffect } = React
 const ProgressBar = () => {
-    const [percentage, setPercentage] = React.useState(0);
 
-    const { state, update } = React.useContext(formCtx)
+    const { stepForm } = useMultiStep()
 
-    return <div>Hello World</div>;
+    let steps = 0;
+
+    console.log(stepForm)
+
+    useEffect(() => {
+        if(stepForm.maxPosition > 0)steps = stepForm.maxPosition + 1
+    }, [stepForm.maxPosition])
+
+    return( 
+        <div>
+            {stepForm.stepNames && stepForm.stepNames.map(step => {
+                return <div>{step}</div>
+            }) }
+        </div>
+    );
 };
 
 export default ProgressBar;
