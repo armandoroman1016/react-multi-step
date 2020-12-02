@@ -25,10 +25,10 @@ const ProgressBar = () => {
             {stepForm.stepNames && stepForm.stepNames.map((step, idx) => {
                 return (
                     <div className="progress-step" key = {idx}>
-                        <p className="label">{step}</p>
                         <div className = {stepForm.currentPosition <= idx ? 'index': "index completed"}>
                             <div className = "content">{idx + 1}</div>
                         </div>
+                        <p className={"label"}>{step}</p>
                     </div>
                 )
             }) }
