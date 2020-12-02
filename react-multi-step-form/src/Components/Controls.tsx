@@ -26,7 +26,9 @@ const Controls = (props: ControlProps) => {
     }
         
     return (
-        <div>
+        <div style = {{
+            transform: "translateY(200px)"
+        }}>
             {stepForm.currentPosition > 0 && <button style={buttonStyles} onClick={() => toggleSteps("decrement")}>PREV</button>}
             {stepForm.currentPosition < stepForm.maxPosition && <button style={buttonStyles}  onClick={() => toggleSteps("increment")}>NEXT</button>}
         </div>

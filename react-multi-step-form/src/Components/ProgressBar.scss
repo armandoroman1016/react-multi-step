@@ -1,0 +1,63 @@
+.progress-bar-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: flex-end;
+    margin: auto 0 40px 0;
+
+    .progress-step {
+        text-align: center;
+        width: 25%;
+        position: relative;
+        .label {
+            margin-bottom: 10px;
+            color: #28a745;
+            width: fit-content;
+            position: absolute;
+            right: 51%;
+        }
+
+        .index {
+            height: 30px;
+            width: 30px;
+            width: 100%;
+            color: orange;
+            display: inline-block;
+            position: relative;
+            transition: background-color 500ms;
+            line-height: 20px;
+            z-index: 1;
+            border-radius: 50%;
+            .content {
+                border-radius: 50%;
+                width: 26px;
+                height: 26px;
+                padding: 8px;
+                background: #fff;
+                border: 2px solid #666;
+                color: #666;
+                text-align: center;
+                font: 24px Arial, sans-serif;
+                position: absolute;
+                right: 47%;
+                top:200%
+            }
+        }
+
+        .index.completed {
+            // color: white;
+            // background-color: #28a745;
+        }
+
+        .index.completed::after {
+            content: "";
+            position: absolute;
+            right: -50%;
+            bottom: -55px;
+            height: 3px;
+            width: 100%;
+            z-index: -1;
+            background-color: #28a745;
+        }
+    }
+}
