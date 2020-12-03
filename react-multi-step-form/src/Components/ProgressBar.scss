@@ -54,6 +54,12 @@
                     transition: background 0.3s ease-in;
                 }
             }
+            &.current{
+                .content{
+                    background: #a1fc95;
+                    color: #fff
+                }
+            }
         }
 
         .index.completed:after {
@@ -69,6 +75,7 @@
             transition: all 0.3s ease-in;
             transition-delay: 0.2s;
         }
+
         .index:after {
             content: "";
             width: 0;

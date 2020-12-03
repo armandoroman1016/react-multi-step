@@ -44,12 +44,12 @@ const Controls = (props: ControlProps) => {
         <Container>
             {currentPosition > 0 && (
                 <Button style={buttonStyles} onClick={() => toggleSteps("decrement")}>
-                    PREV
+                    ⏮
                 </Button>
             )}
             {currentPosition < maxPosition && (
                 <Button style={buttonStyles} onClick={() => toggleSteps("increment")}>
-                    NEXT
+                    ⏭
                 </Button>
             )}
         </Container>

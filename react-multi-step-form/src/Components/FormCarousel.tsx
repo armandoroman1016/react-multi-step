@@ -24,7 +24,7 @@ export const FormCarousel = (props: Props) => {
             const formWidth = n[0].clientWidth;
             const amountToMove = formWidth * currentPosition;
             stepRef.current.style.transform = `translateX(-${amountToMove}px)`;
-            stepRef.current.style.transition = "transform .25s ease-in";
+            stepRef.current.style.transition = "transform .6s cubic-bezier(.62,.23,.27,1.44)";
         }
     }, [stepRef, currentPosition]);
 
