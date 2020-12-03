@@ -2,11 +2,11 @@ import * as React from "react";
 import * as CSS from "csstype";
 import styled from "styled-components";
 
-import FormStep from "./FormStep";
 import Controls from "./Controls";
 import ProgressBar from "./ProgressBar";
 
 import { useMultiStep } from "../utils/useMultiStep";
+import { FormCarousel } from "./FormCarousel";
 
 const { useEffect } = React;
 interface Step {
@@ -44,12 +44,7 @@ const FormContainer = ({ heading, progressBar, styles, children, steps }: FormCo
     return (
         <Container style={styles}>
             <ProgressBar />
-            <div className="steps-carousel">
-                {steps &&
-                    steps.map(({ component: Step }, idx) => {
-                        return <FormStep component={Step} stepIndex={idx} key={idx} />;
-                    })}
-            </div>
+            <FormCarousel steps={steps} />
             <Controls />
         </Container>
     );
