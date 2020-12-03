@@ -1,6 +1,7 @@
 import React from "react";
 import { MultiStep } from "./Components/MultiStep";
 import { Test, Test2, Test3, Test4 } from "./TestComponents/test";
+import "./App.scss";
 
 function App() {
     return (
