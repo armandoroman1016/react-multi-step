@@ -1,8 +1,7 @@
-import React from 'react'
+import React from "react";
 import FormContainer from "./FormContainer";
-import {FormProvider} from '../Contexts/FormContext'
+import { FormProvider } from "../Contexts/FormContext";
 import * as CSS from "csstype";
-
 
 interface Step {
     component: React.ComponentType;
@@ -21,8 +20,8 @@ export const MultiStep = (props: MultiStepProps) => {
     return (
         <React.Fragment>
             <FormProvider>
-                <FormContainer steps={props.steps}/>
+                <FormContainer steps={props.steps} />
             </FormProvider>
         </React.Fragment>
-    )
-}
+    );
+};

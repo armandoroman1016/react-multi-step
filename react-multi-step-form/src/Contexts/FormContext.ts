@@ -1,18 +1,19 @@
 import { createCtx } from "../utils/createCtx";
 
 interface FormContext {
-    inputFields: Object
-    currentPosition: number
-    maxPosition: number
-    currentForm?: React.ComponentType
-    allowNext: boolean
-    allowSubmission: boolean
-    onNext: () => void,
-    onComplete: () => Object,
-    updateFormValues: (fieldName: string, fieldValue: string) => void,
-    errors: boolean,
-    stepNames: string[],
-    addStepName: (stepName: string) => void
+    inputFields: Record<string, unknown>;
+    currentPosition: number;
+    maxPosition: number;
+    currentForm?: React.ComponentType;
+    allowNext: boolean;
+    allowSubmission: boolean;
+    onNext: () => void;
+    onComplete: () => Record<string, unknown>;
+    updateFormValues: (fieldName: string, fieldValue: string) => void;
+    errors: boolean;
+    stepNames: string[];
+    addStepName: (stepName: string) => void;
+    complete: boolean;
 }
 
 const [formCtx, FormProvider] = createCtx<FormContext>({
@@ -22,19 +23,21 @@ const [formCtx, FormProvider] = createCtx<FormContext>({
     allowNext: true,
     allowSubmission: true,
     errors: false,
-    onNext: function(continueWithoutFieldFufillment: boolean = true){
-        this.allowNext = continueWithoutFieldFufillment
+    complete: false,
+    onNext: function (continueWithoutFieldFufillment = true) {
+        this.allowNext = continueWithoutFieldFufillment;
     },
-    onComplete: function(){
-        return this.inputFields
+    onComplete: function () {
+        this.complete = true;
+        return this.inputFields;
     },
-    updateFormValues: function(fieldName, fieldValue){
-        this.inputFields = {...this.inputFields, [fieldName]: fieldValue}
+    updateFormValues: function (fieldName, fieldValue) {
+        this.inputFields = { ...this.inputFields, [fieldName]: fieldValue };
     },
     stepNames: [],
-    addStepName: function(stepName){
-        this.stepNames.push(stepName)
-    }
-})
+    addStepName: function (stepName) {
+        this.stepNames.push(stepName);
+    },
+});
 
-export {formCtx, FormProvider}
+export { formCtx, FormProvider };

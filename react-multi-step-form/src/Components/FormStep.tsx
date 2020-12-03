@@ -1,28 +1,26 @@
 import * as React from "react";
-// import * as CSS from "csstype";
-import "./FormStep.scss"
-import {formCtx} from '../Contexts/FormContext'
+import "./FormStep.scss";
+import { useMultiStep } from "../utils/useMultiStep";
 
-export interface FormStepProps{
+export interface FormStepProps {
     component: React.ComponentType;
-    stepIndex: number
-
+    stepIndex: number;
 }
 
 const FormStep = (props: FormStepProps) => {
+    const { component: Component, stepIndex } = props;
 
-    const { component: Component, stepIndex } = props
-
-    const { state, update } = React.useContext(formCtx);
+    const { stepForm, updateMultiStep } = useMultiStep();
+    const { currentPosition, maxPosition } = stepForm;
 
     const checkForEnter = (e: React.KeyboardEvent) => {
-        if(e.key === "Enter"){
-            if(state.currentPosition < state.maxPosition) update({...state, currentPosition: state.currentPosition + 1})
+        if (e.key === "Enter") {
+            if (currentPosition < maxPosition) updateMultiStep({ ...stepForm, currentPosition: currentPosition + 1 });
         }
-    }
+    };
 
     return (
-        <div className = {state.currentPosition === stepIndex ?  "form-step active" : 'form-step'} onKeyDown={checkForEnter}>
+        <div className={currentPosition === stepIndex ? "form-step active" : "form-step"} onKeyDown={checkForEnter}>
             <Component />
         </div>
     );

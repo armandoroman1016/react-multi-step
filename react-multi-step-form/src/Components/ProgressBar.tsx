@@ -1,37 +1,33 @@
 import * as React from "react";
-import * as CSS from "csstype";
-import "./ProgressBar.scss"
-import {useMultiStep} from "../utils/useMultiStep"
-interface ProgressBarProps {
-    fillColor?: string;
-    className?: string;
-}
+import "./ProgressBar.scss";
+import { useMultiStep } from "../utils/useMultiStep";
 
-const { useEffect, useState } = React
 const ProgressBar = () => {
+    const { stepForm } = useMultiStep();
 
-    const { stepForm } = useMultiStep()
+    const calculateClass = (idx: number) => {
+        if (stepForm.complete) return "index completed";
+        if (stepForm.currentPosition === idx) return "index current";
+        if (stepForm.currentPosition > idx || stepForm.currentPosition === stepForm.maxPosition)
+            return "index completed";
+        return "index uncomplete";
+    };
 
-    let steps = 0;
-
-    console.log(stepForm)
-
-    useEffect(() => {
-        if(stepForm.maxPosition > 0)steps = stepForm.maxPosition + 1
-    }, [stepForm.maxPosition])
-    
-    return( 
-        <div className="progress-bar-container">
-            {stepForm.stepNames && stepForm.stepNames.map((step, idx) => {
-                return (
-                    <div className="progress-step" key = {idx}>
-                        <div className = {stepForm.currentPosition <= idx ? 'index': "index completed"}>
-                            <div className = "content">{idx + 1}</div>
-                        </div>
-                        <p className={"label"}>{step}</p>
-                    </div>
-                )
-            }) }
+    return (
+        <div className="wrapper">
+            <div className="progress-bar-container">
+                {stepForm.stepNames &&
+                    stepForm.stepNames.map((step, idx) => {
+                        return (
+                            <div className="progress-step" key={idx}>
+                                <div className={calculateClass(idx)}>
+                                    <div className="content">{stepForm.currentPosition > idx ? "✔" : idx + 1}</div>
+                                </div>
+                                <p className="label">{step}</p>
+                            </div>
+                        );
+                    })}
+            </div>
         </div>
     );
 };

@@ -1,21 +1,25 @@
+.wrapper{
+    height: 120px;
+}
+
 .progress-bar-container {
     display: flex;
     width: 100%;
     justify-content: space-around;
     align-items: flex-end;
-    margin: auto 0 40px 0;
-
+    padding-bottom: 20px;
+    
     .progress-step {
         text-align: center;
         width: 25%;
         position: relative;
         .label {
-            margin-bottom: 10px;
-            color: #666;
+            color:#adadad;
             position: absolute;
             left: 30%;
             width: 46px;
             text-align: center;
+            top: 0px;            
         }
 
         .index {
@@ -29,23 +33,23 @@
             border-radius: 50%;
             position: absolute;
             left: 30%;
-            top: 45px;
+            top: 40px;
             .content {
                 border-radius: 50%;
                 width: 26px;
                 height: 26px;
                 padding: 8px;
-                border: 2px solid #666;
-                color: #666;
+                border: 2px solid #6cf05b;
+                color: #6cf05b;
                 text-align: center;
                 font: 24px Arial, sans-serif;
-                background: linear-gradient(to left,#fff 50%, #8183f0 50%);
+                background: linear-gradient(to left,#fff 50%, rgba(#a1fc95, 1) 50%);
                 background-position: right bottom;
                 background-size: 200% 100%;
             }
             &.completed {
                 .content {
-                    border: 2px solid #8183f0;
+                    color: #fff;
                     background-position: left bottom;
                     transition: background 0.3s ease-in;
                 }
@@ -60,7 +64,7 @@
             height: 3px;
             width: 100%;
             z-index: -1;
-            background-color: #8183f0;
+            background-color: #a1fc95;
             right: 0;
             transition: all 0.3s ease-in;
             transition-delay: 0.2s;
@@ -68,6 +72,23 @@
         .index:after {
             content: "";
             width: 0;
+        }
+
+        .index + p{
+            font-weight: bold;
+        }
+
+        .index.current + p{
+            margin: 0;
+            padding: 0;
+            margin-top: 10px;
+            font-size: 18px;
+            transition: font-size .25s ease;
+            transition-delay: .5s;
+        }
+
+        .index.uncomplete + p:only-of-type{
+            color: #adadad;
         }
     }
 }

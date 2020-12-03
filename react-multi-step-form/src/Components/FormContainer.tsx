@@ -1,16 +1,18 @@
 import * as React from "react";
 import * as CSS from "csstype";
-import "./FormContainer.scss"
-import FormStep from "./FormStep"
-import Controls from "./Controls";
+import styled from "styled-components";
 
+import FormStep from "./FormStep";
+import Controls from "./Controls";
 import ProgressBar from "./ProgressBar";
-import { useMultiStep } from '../utils/useMultiStep'
+
+import { useMultiStep } from "../utils/useMultiStep";
+
+const { useEffect } = React;
 interface Step {
     component: React.ComponentType;
     name: string;
 }
-
 interface FormContainerProps {
     heading?: string;
     progressBar?: boolean;
@@ -19,29 +21,37 @@ interface FormContainerProps {
     steps: Step[];
 }
 
-const {useEffect, useRef} = React
+const Container = styled.div`
+    width: 100%';
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border:2px solid red;
+`;
 
 const FormContainer = ({ heading, progressBar, styles, children, steps }: FormContainerProps) => {
-
-    const {stepForm, updateMultiStep} = useMultiStep()
+    const { stepForm, updateMultiStep } = useMultiStep();
 
     useEffect(() => {
-        if(steps){
-            let maxPosition = steps.length - 1
-            updateMultiStep({...stepForm, maxPosition})
-            steps.forEach(step => stepForm.addStepName(step.name))
+        if (steps) {
+            const maxPosition = steps.length - 1;
+            updateMultiStep({ ...stepForm, maxPosition });
+            steps.forEach((step) => stepForm.addStepName(step.name));
         }
-    },[steps])
+    }, [steps, updateMultiStep]);
 
     return (
-        <div style={styles || {}} className="multi-step-form-container">
+        <Container style={styles}>
             <ProgressBar />
-            {steps &&
-                steps.map(({ component: Step, name }, idx) => {
-                    return <FormStep component={Step} stepIndex={idx} key={idx}/>;
-                })}
-            <Controls/>
-        </div>
+            <div className="steps-carousel">
+                {steps &&
+                    steps.map(({ component: Step }, idx) => {
+                        return <FormStep component={Step} stepIndex={idx} key={idx} />;
+                    })}
+            </div>
+            <Controls />
+        </Container>
     );
 };
 

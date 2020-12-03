@@ -1,38 +1,59 @@
-import React, { useContext } from 'react'
-import * as CSS from 'csstype'
-import { useMultiStep } from "../utils/useMultiStep"
+import React from "react";
+import * as CSS from "csstype";
+import { useMultiStep } from "../utils/useMultiStep";
+
+import styled from "styled-components";
 
 interface ControlProps {
     buttonStyles?: CSS.Properties;
     submitFunction?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
+const Button = styled.button<ControlProps>`
+    border-radius: 4px;
+    border: none;
+    padding: 8px 10px;
+    background: #5c8ef2;
+    color: #fff;
+    cursor: pointer;
+`;
+
+const Container = styled.div`
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+`;
+
 const Controls = (props: ControlProps) => {
-
-    const { buttonStyles, submitFunction } = props
-
-    const { stepForm, updateMultiStep } = useMultiStep()
+    const { buttonStyles } = props;
+    const { stepForm, updateMultiStep } = useMultiStep();
+    const { currentPosition, maxPosition } = stepForm;
 
     const toggleSteps = (command: "increment" | "decrement") => {
-        let {currentPosition, maxPosition} = stepForm
         // increment step
-        if(command === 'increment'){
-            if(currentPosition < maxPosition) updateMultiStep({...stepForm, currentPosition: currentPosition + 1})
+        if (command === "increment") {
+            if (currentPosition < maxPosition) updateMultiStep({ ...stepForm, currentPosition: currentPosition + 1 });
         }
         // decrement step
-        else if(command === "decrement"){
-            if(currentPosition > 0) updateMultiStep({...stepForm, currentPosition: currentPosition -= 1})
+        else if (command === "decrement") {
+            if (currentPosition > 0) updateMultiStep({ ...stepForm, currentPosition: (stepForm.currentPosition -= 1) });
         }
-    }
-        
-    return (
-        <div style = {{
-            transform: "translateY(200px)"
-        }}>
-            {stepForm.currentPosition > 0 && <button style={buttonStyles} onClick={() => toggleSteps("decrement")}>PREV</button>}
-            {stepForm.currentPosition < stepForm.maxPosition && <button style={buttonStyles}  onClick={() => toggleSteps("increment")}>NEXT</button>}
-        </div>
-    )
-}
+    };
 
-export default Controls
+    return (
+        <Container>
+            {currentPosition > 0 && (
+                <Button style={buttonStyles} onClick={() => toggleSteps("decrement")}>
+                    PREV
+                </Button>
+            )}
+            {currentPosition < maxPosition && (
+                <Button style={buttonStyles} onClick={() => toggleSteps("increment")}>
+                    NEXT
+                </Button>
+            )}
+        </Container>
+    );
+};
+
+export default Controls;
