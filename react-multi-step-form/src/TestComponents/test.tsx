@@ -2,7 +2,7 @@
 This file is for development purposes only.
 */
 
-import React from "react";
+import * as React from "react";
 import { useMultiStep } from "../utils/useMultiStep";
 
 const Test = () => {

@@ -1,6 +1,6 @@
 import { createCtx } from "../utils/createCtx";
 
-interface FormContext {
+export interface FormContext {
     inputFields: Record<string, unknown>;
     currentPosition: number;
     maxPosition: number;

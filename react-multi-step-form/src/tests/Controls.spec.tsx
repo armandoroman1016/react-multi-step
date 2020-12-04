@@ -1,10 +1,10 @@
-import React from "react";
+import * as React from "react";
 import { render } from "../utils/test-utils";
 import Controls from "../Components/Controls";
 
-import { MultiStep } from "../Components/MultiStep";
+import MultiStep from "../App";
 import { Test, Test2, Test3, Test4 } from "../TestComponents/test";
-import { NonEmptyArray, Step } from "utils/types";
+import { NonEmptyArray, Step } from "../utils/types";
 
 const steps: NonEmptyArray<Step> = [
     { component: Test, name: "Foo" },

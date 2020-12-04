@@ -2,27 +2,23 @@
   "name": "react-multi-step-form",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "@types/styled-components": "^5.1.4",
-    "csstype": "^3.0.3",
-    "node-sass": "4.14.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0",
-    "react-scripts": "3.4.3",
-    "shortid": "^2.2.16",
-    "styled-components": "^5.2.1",
-    "typescript": "~3.7.2"
+  "main": "dist/index.js",
+  "dependencies": {},
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=8",
+    "npm": ">=5"
   },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "keywords": ["react", "typescript", "npm"],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "rollup -c -w",
+    "build": "rollup -c",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
@@ -43,13 +39,29 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/react": "^16.14.2",
+    "@types/styled-components": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "csstype": "^3.0.5",
     "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
     "jest-environment-jsdom-fifteen": "^1.0.2",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "rollup": "^2.34.1",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "styled-components": "^5.2.1",
+    "typescript": "^3.7.5"
   },
   "husky": {
     "hooks": {
