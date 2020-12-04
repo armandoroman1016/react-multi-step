@@ -1,11 +1,17 @@
 import React from "react";
 import { MultiStep } from "./Components/MultiStep";
 import { Test, Test2, Test3, Test4 } from "./TestComponents/test";
-import "./App.scss";
 
-function App() {
+import styled from "styled-components";
+
+const Container = styled.div`
+    width: 50vw;
+    margin: 0 auto;
+`;
+
+const App = () => {
     return (
-        <div className="App">
+        <Container>
             <MultiStep
                 steps={[
                     { component: Test, name: "Foo" },
@@ -14,8 +20,8 @@ function App() {
                     { component: Test4, name: "Bay" },
                 ]}
             />
-        </div>
+        </Container>
     );
-}
+};
 
 export default App;

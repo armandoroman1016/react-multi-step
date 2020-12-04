@@ -62,6 +62,11 @@
             }
         }
 
+        .index.completed.final:after{
+            width: 0;
+            height: 0;
+        }
+        
         .index.completed:after {
             content: "";
             position: absolute;
@@ -75,6 +80,8 @@
             transition: all 0.3s ease-in;
             transition-delay: 0.2s;
         }
+
+
 
         .index:after {
             content: "";
