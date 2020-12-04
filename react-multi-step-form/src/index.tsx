@@ -1,16 +1,27 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+import * as React from "react";
+import FormContainer from "./Components/FormContainer";
+import { FormProvider } from "./Contexts/FormContext";
+import * as CSS from "csstype";
+import { NonEmptyArray, Step } from "./utils/types";
 
-ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
-    document.getElementById("root"),
-);
+import { useMultiStep } from './utils/useMultiStep'
+interface MultiStepProps {
+    heading?: string;
+    progressBar?: boolean;
+    styles?: CSS.Properties;
+    children?: React.ReactNode;
+    steps: NonEmptyArray<Step>;
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const MultiStep = (props: MultiStepProps) => {
+    return (
+        <React.Fragment>
+            <FormProvider>
+                <FormContainer steps={props.steps} />
+            </FormProvider>
+        </React.Fragment>
+    );
+};
+
+export { useMultiStep }
+export default MultiStep;

@@ -30,7 +30,7 @@ const Container = styled.div`
     border:2px solid red;
 `;
 
-const FormContainer = ({ heading, progressBar, styles, children, steps }: FormContainerProps) => {
+const FormContainer = ({styles, steps }: FormContainerProps) => {
     const { stepForm, updateMultiStep } = useMultiStep();
 
     useEffect(() => {

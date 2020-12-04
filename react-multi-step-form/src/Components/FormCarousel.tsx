@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { useMultiStep } from "../utils/useMultiStep";
 
 import FormStep from "./FormStep";
