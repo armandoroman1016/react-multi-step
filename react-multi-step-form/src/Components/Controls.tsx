@@ -18,7 +18,7 @@ const Button = styled.button<ControlProps>`
     cursor: pointer;
 `;
 
-const Container = styled.div`
+const Container = styled.div<ControlProps>`
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -44,12 +44,12 @@ const Controls = (props: ControlProps) => {
         <Container>
             {currentPosition > 0 && (
                 <Button style={buttonStyles} onClick={() => toggleSteps("decrement")}>
-                    ⏮
+                    Back
                 </Button>
             )}
             {currentPosition < maxPosition && (
                 <Button style={buttonStyles} onClick={() => toggleSteps("increment")}>
-                    ⏭
+                    Next
                 </Button>
             )}
         </Container>
