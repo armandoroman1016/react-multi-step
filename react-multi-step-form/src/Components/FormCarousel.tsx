@@ -21,6 +21,7 @@ export const FormCarousel = (props: Props) => {
     useEffect(() => {
         if (stepRef?.current) {
             const n = stepRef.current.children;
+            if (n.length < 1) return;
             const formWidth = n[0].clientWidth;
             const amountToMove = formWidth * currentPosition;
             stepRef.current.style.transform = `translateX(-${amountToMove}px)`;

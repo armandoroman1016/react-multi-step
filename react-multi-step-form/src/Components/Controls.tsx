@@ -43,7 +43,7 @@ const Controls = (props: ControlProps) => {
     return (
         <Container>
             {currentPosition > 0 && (
-                <Button style={buttonStyles} onClick={() => toggleSteps("decrement")}>
+                <Button data-test style={buttonStyles} onClick={() => toggleSteps("decrement")}>
                     Back
                 </Button>
             )}

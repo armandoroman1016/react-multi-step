@@ -4,8 +4,9 @@ import Controls from "../Components/Controls";
 
 import { MultiStep } from "../Components/MultiStep";
 import { Test, Test2, Test3, Test4 } from "../TestComponents/test";
+import { NonEmptyArray, Step } from "utils/types";
 
-const steps = [
+const steps: NonEmptyArray<Step> = [
     { component: Test, name: "Foo" },
     { component: Test2, name: "Bar" },
     { component: Test3, name: "Baz" },
@@ -20,9 +21,11 @@ const TestWrapper = () => {
     );
 };
 
-test("it renders to the user", async () => {
-    // arrange
-    const x = render(<Controls />, { renderOptions: { wrapper: TestWrapper } });
-    const nextButton = await x.findByText(/Next/);
-    expect(nextButton).toBeTruthy();
+describe("Controls", () => {
+    it("it renders to the user", async () => {
+        // arrange
+        const { findByText } = render(<Controls />, { renderOptions: { wrapper: TestWrapper } });
+        const nextButton = await findByText(/Next/);
+        expect(nextButton).toBeTruthy();
+    });
 });
