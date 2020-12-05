@@ -4,9 +4,16 @@ import { useMultiStep } from "../utils/useMultiStep";
 
 import styled from "styled-components";
 
+interface ControlButtons {
+    prev: typeof React.Component
+    next: typeof React.Component
+}
 interface ControlProps {
     buttonStyles?: CSS.Properties;
     submitFunction?: React.MouseEventHandler<HTMLButtonElement>;
+    controls?: ControlButtons
+    prevButtonText?: string;
+    nextButtonText?: string;
 }
 
 const Button = styled.button<ControlProps>`
@@ -16,16 +23,20 @@ const Button = styled.button<ControlProps>`
     background: #5c8ef2;
     color: #fff;
     cursor: pointer;
+    width: 150px;
+    margin-bottom: 12px;
 `;
 
 const Container = styled.div<ControlProps>`
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const Controls = (props: ControlProps) => {
-    const { buttonStyles } = props;
+    const { buttonStyles, controls, prevButtonText, nextButtonText } = props;
+
     const { stepForm, updateMultiStep } = useMultiStep();
     const { currentPosition, maxPosition } = stepForm;
 
@@ -40,18 +51,29 @@ const Controls = (props: ControlProps) => {
         }
     };
 
+    const useButton = (direction: "decrement" | "increment", buttonText?: string) => {
+
+        // rendering users custom controls, passing a toggle steps fn that the user must call on for functionality
+        let Prev
+        let Next
+        if(controls){
+            Prev = controls.prev
+            Next = controls.next
+        }
+        if(Prev && direction === "decrement") return <Prev toggleSteps={() => toggleSteps(direction)} />
+        if(Next && direction === "increment") return <Next toggleSteps={() => toggleSteps(direction)} />
+        
+        // default controls
+        let defaultText = direction === "decrement" ? "Previous" : "Next"
+        return <Button style={buttonStyles} onClick={() => toggleSteps(direction)}>
+                {buttonText || defaultText}
+                </Button>
+    }
+
     return (
         <Container>
-            {currentPosition > 0 && (
-                <Button data-test style={buttonStyles} onClick={() => toggleSteps("decrement")}>
-                    Back
-                </Button>
-            )}
-            {currentPosition < maxPosition && (
-                <Button style={buttonStyles} onClick={() => toggleSteps("increment")}>
-                    Next
-                </Button>
-            )}
+            {currentPosition > 0 && useButton("decrement", prevButtonText)}
+            {currentPosition < maxPosition && useButton("increment", nextButtonText)}
         </Container>
     );
 };

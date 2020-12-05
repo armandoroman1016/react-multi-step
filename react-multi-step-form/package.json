@@ -15,7 +15,11 @@
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
-  "keywords": ["react", "typescript", "npm"],
+  "keywords": [
+    "react",
+    "typescript",
+    "npm"
+  ],
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c",

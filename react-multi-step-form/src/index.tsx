@@ -1,5 +1,6 @@
 import * as React from "react";
 import FormContainer from "./Components/FormContainer";
+import Controls from './Components/Controls'
 import { FormProvider } from "./Contexts/FormContext";
 import * as CSS from "csstype";
 import { NonEmptyArray, Step } from "./utils/types";
@@ -14,14 +15,17 @@ interface MultiStepProps {
 }
 
 const MultiStep = (props: MultiStepProps) => {
+
+    const {children} = props
+    
     return (
         <React.Fragment>
             <FormProvider>
-                <FormContainer steps={props.steps} />
+                <FormContainer steps={props.steps} children = {children}/>
             </FormProvider>
         </React.Fragment>
     );
 };
 
-export { useMultiStep }
+export { useMultiStep, Controls }
 export default MultiStep;
