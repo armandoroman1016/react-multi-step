@@ -214,7 +214,7 @@ var FormCarousel = function (props) {
 };
 
 var useEffect$1 = React.useEffect;
-var Container$1 = styled__default['default'].div(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    width: 100%';\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    border:2px solid red;\n"], ["\n    width: 100%';\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    border:2px solid red;\n"])));
+var Container$1 = styled__default['default'].div(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    border:2px solid red;\n"], ["\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    border:2px solid red;\n"])));
 var FormContainer = function (_a) {
     var styles = _a.styles, steps = _a.steps, children = _a.children;
     var _b = useMultiStep(), stepForm = _b.stepForm, updateMultiStep = _b.updateMultiStep;

@@ -5,9 +5,6 @@ import Controls from "../Components/Controls";
 import MultiStep from "../index";
 import { Test, Test2, Test3, Test4 } from "../TestComponents/mock";
 import { NonEmptyArray, Step } from "../utils/types";
-import styled from 'styled-components'
-
-import 'jest-styled-components'
 
 const steps: NonEmptyArray<Step> = [
     { component: Test, name: "Foo" },
