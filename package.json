@@ -23,7 +23,7 @@
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c",
-    "test": "react-scripts test",
+    "test": "jest --notify --config=./jest.config.js",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
@@ -43,6 +43,9 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
@@ -52,20 +55,23 @@
     "@typescript-eslint/eslint-plugin": "^4.5.0",
     "@typescript-eslint/parser": "^4.5.0",
     "babel-core": "^6.26.3",
+    "babel-jest": "^26.6.3",
     "babel-runtime": "^6.26.0",
     "csstype": "^3.0.5",
     "eslint-config-prettier": "^6.13.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.21.5",
-    "jest-environment-jsdom-fifteen": "^1.0.2",
+    "jest": "^26.6.3",
+    "jest-styled-components": "^7.0.3",
     "prettier": "^2.1.2",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
-    "rollup": "^2.34.1",
+    "react-test-renderer": "^17.0.1",
+    "rollup": "^2.34.2",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.29.0",
     "styled-components": "^5.2.1",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.7"
   },
   "husky": {
     "hooks": {

@@ -195,8 +195,7 @@ var FormCarousel = function (props) {
     var stepRef = useRef(null);
     // carousel
     useEffect(function () {
-        var _a;
-        if ((_a = stepRef) === null || _a === void 0 ? void 0 : _a.current) {
+        if (stepRef === null || stepRef === void 0 ? void 0 : stepRef.current) {
             var n = stepRef.current.children;
             if (n.length < 1)
                 return;
