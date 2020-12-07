@@ -171,7 +171,7 @@ var ProgressBar = function () {
             }))));
 };
 
-___$insertStyle(".steps-carousel {\n  overflow: hidden;\n}\n.steps-carousel .inner {\n  display: flex;\n}\n\n.form-step {\n  min-width: 100%;\n  height: 200px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n}\n.form-step:first-child {\n  width: 50%;\n}");
+___$insertStyle(".steps-carousel {\n  overflow: hidden;\n}\n.steps-carousel .inner {\n  display: flex;\n}\n\n.form-step {\n  min-width: 100%;\n  height: 200px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n  visibility: hidden;\n}\n.form-step:first-child {\n  width: 50%;\n}\n\n.form-step.active {\n  visibility: visible;\n}");
 
 var FormStep = function (props) {
     var Component = props.component, stepIndex = props.stepIndex;
@@ -187,24 +187,37 @@ var FormStep = function (props) {
         React.createElement(Component, null)));
 };
 
-var useEffect = React.useEffect, useRef = React.useRef;
+var useEffect = React.useEffect, useRef = React.useRef, useState = React.useState;
 var FormCarousel = function (props) {
     var steps = props.steps;
     var stepForm = useMultiStep().stepForm;
     var currentPosition = stepForm.currentPosition;
     var stepRef = useRef(null);
+    var _a = useState(0), carouselWidth = _a[0], setCarouselWidth = _a[1];
     // carousel
     useEffect(function () {
+        if (carouselWidth === 0 && (stepRef === null || stepRef === void 0 ? void 0 : stepRef.current)) {
+            setCarouselWidth(stepRef.current.clientWidth);
+        }
         if (stepRef === null || stepRef === void 0 ? void 0 : stepRef.current) {
             var n = stepRef.current.children;
             if (n.length < 1)
                 return;
-            var formWidth = n[0].clientWidth;
-            var amountToMove = formWidth * currentPosition;
-            stepRef.current.style.transform = "translateX(-" + amountToMove + "px)";
+            var carouselPosition = carouselWidth * stepForm.currentPosition;
+            stepRef.current.style.transform = "translateX(-" + carouselPosition + "px)";
             stepRef.current.style.transition = "transform .6s cubic-bezier(.62,.23,.27,1.44)";
         }
-    }, [stepRef, currentPosition]);
+    }, [stepRef, currentPosition, carouselWidth]);
+    useEffect(function () {
+        function moveCarousel() {
+            if (stepRef.current)
+                setCarouselWidth(stepRef.current.clientWidth);
+        }
+        window.addEventListener("resize", moveCarousel);
+        return function () {
+            window.removeEventListener("resize", moveCarousel);
+        };
+    }, []);
     return (React.createElement("div", { className: "steps-carousel" },
         React.createElement("div", { ref: stepRef, className: "inner" }, steps &&
             steps.map(function (_a, idx) {
@@ -214,7 +227,7 @@ var FormCarousel = function (props) {
 };
 
 var useEffect$1 = React.useEffect;
-var Container$1 = styled__default['default'].div(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    border:2px solid red;\n"], ["\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n    border:2px solid red;\n"])));
+var Container$1 = styled__default['default'].div(templateObject_1$1 || (templateObject_1$1 = __makeTemplateObject(["\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n"], ["\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n"])));
 var FormContainer = function (_a) {
     var styles = _a.styles, steps = _a.steps, children = _a.children;
     var _b = useMultiStep(), stepForm = _b.stepForm, updateMultiStep = _b.updateMultiStep;
