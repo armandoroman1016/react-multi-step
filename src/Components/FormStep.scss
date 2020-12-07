@@ -1,12 +1,9 @@
 .steps-carousel{
     overflow: hidden;
     .inner{
-        
         display: flex;
     }
 }
-
-
 .form-step{
     min-width: 100%;
     height: 200px;
@@ -14,7 +11,12 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    visibility: hidden;
     &:first-child{
         width: 50%;
     }
+}
+
+.form-step.active{
+    visibility: visible;
 }

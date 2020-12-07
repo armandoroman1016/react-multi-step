@@ -22,15 +22,15 @@ interface FormContainerProps {
 }
 
 const Container = styled.div`
-    width: 100%';
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border:2px solid red;
 `;
 
-const FormContainer = ({styles, steps }: FormContainerProps) => {
+const FormContainer = ({styles, steps, children }: FormContainerProps) => {
+
     const { stepForm, updateMultiStep } = useMultiStep();
 
     useEffect(() => {
@@ -45,7 +45,8 @@ const FormContainer = ({styles, steps }: FormContainerProps) => {
         <Container style={styles}>
             <ProgressBar />
             <FormCarousel steps={steps} />
-            <Controls />
+            {!React.Children.count(children) && <Controls />}
+            {children}
         </Container>
     );
 };

@@ -1,6 +1,6 @@
 import * as React from "react";
-import "./FormStep.scss";
 import { useMultiStep } from "../utils/useMultiStep";
+import "./FormStep.scss";
 
 export interface FormStepProps {
     component: React.ComponentType;
