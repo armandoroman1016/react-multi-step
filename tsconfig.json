@@ -20,5 +20,5 @@
     "esModuleInterop": true
   },
   "include": ["src", "src/Contexts/FormContext.ts"],
-  "exclude": ["node_modules", "dist", "example", "rollup.config.js"]
+  "exclude": ["node_modules", "dist", "example", "rollup.config.js", "./src/__tests__"]
 }
