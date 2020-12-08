@@ -69,7 +69,7 @@ function createCtx(defaultValue) {
     return [ctx, Provider];
 }
 
-var _a = createCtx({
+var ctx = {
     inputFields: {},
     currentPosition: 0,
     maxPosition: 0,
@@ -92,8 +92,9 @@ var _a = createCtx({
     stepNames: [],
     addStepName: function (stepName) {
         this.stepNames.push(stepName);
-    },
-}), formCtx = _a[0], FormProvider = _a[1];
+    }
+};
+var _a = createCtx(ctx), formCtx = _a[0], FormProvider = _a[1];
 
 var useMultiStep = function () {
     var _a = React.useContext(formCtx), state = _a.state, update = _a.update;
@@ -140,11 +141,16 @@ var Controls = function (props) {
 };
 var templateObject_1, templateObject_2;
 
-___$insertStyle(".progress-container {\n  border-radius: 2px;\n  margin: 10px auto;\n  padding: 20px;\n  width: 80%;\n  display: flex;\n  justify-content: space-between;\n  position: relative;\n}\n\n.progress-step .step-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  position: relative;\n}\n.progress-step .step-wrapper .step-idx {\n  margin: auto 0;\n  border-radius: 80%;\n  background: #fff;\n  border: 1px solid #D3D3D3;\n  width: 20px;\n  height: 20px;\n  padding: 3px;\n  text-align: center;\n  margin-bottom: 12px;\n  color: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx:last-of-type {\n  color: red;\n}\n.progress-step .step-wrapper .step-idx::before {\n  position: absolute;\n  z-index: -1;\n  top: 22%;\n  left: -50%;\n  content: \"\";\n  width: 90%;\n  height: 1px;\n  background: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx.first::before {\n  width: 0;\n}\n.progress-step .step-wrapper .step-idx.completed, .progress-step .step-wrapper .step-idx.current {\n  background-color: #5c8ef2;\n  color: #fff;\n  border: none;\n}\n.progress-step .step-wrapper .step-idx.completed::before, .progress-step .step-wrapper .step-idx.current::before {\n  height: 2px;\n  background: #5c8ef2;\n}\n.progress-step .step-wrapper .step-idx.completed {\n  font-weight: bold;\n}");
+___$insertStyle(".progress-container {\n  border-radius: 2px;\n  margin: 10px auto;\n  padding: 20px;\n  width: 80%;\n  display: flex;\n  justify-content: space-between;\n  position: relative;\n}\n\n.progress-step .step-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  position: relative;\n}\n.progress-step .step-wrapper .step-idx {\n  margin: auto 0;\n  border-radius: 80%;\n  background: #fff;\n  border: 1px solid #D3D3D3;\n  width: 20px;\n  height: 20px;\n  padding: 3px;\n  text-align: center;\n  margin-bottom: 12px;\n  color: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx:last-of-type {\n  color: red;\n}\n.progress-step .step-wrapper .step-idx::before {\n  position: absolute;\n  z-index: -1;\n  top: 22%;\n  left: -45%;\n  content: \"\";\n  width: 90%;\n  height: 1px;\n  background: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx.first::before {\n  width: 0;\n}\n.progress-step .step-wrapper .step-idx.completed, .progress-step .step-wrapper .step-idx.current {\n  background-color: #5c8ef2;\n  color: #fff;\n  border: 2px solid #fff;\n}\n.progress-step .step-wrapper .step-idx.completed::before, .progress-step .step-wrapper .step-idx.current::before {\n  height: 2px;\n  background: #5c8ef2;\n}\n.progress-step .step-wrapper .step-idx.completed {\n  font-weight: bold;\n  cursor: pointer;\n}");
 
 var ProgressBar = function () {
-    var stepForm = useMultiStep().stepForm;
+    var _a = useMultiStep(), stepForm = _a.stepForm, updateMultiStep = _a.updateMultiStep;
     var stepNames = stepForm.stepNames, maxPosition = stepForm.maxPosition, currentPosition = stepForm.currentPosition;
+    var goToStep = function (selectedIdx) {
+        if (currentPosition > selectedIdx) {
+            updateMultiStep(__assign(__assign({}, stepForm), { currentPosition: selectedIdx }));
+        }
+    };
     var getClass = function (idx) {
         var str = "";
         if (idx === 0)
@@ -155,15 +161,10 @@ var ProgressBar = function () {
             return str + " completed";
         return str + "uncomplete";
     };
-    // const getContent = (idx: number) => {
-    //     if (currentPosition > idx) return "✔";
-    //     if (complete && currentPosition === maxPosition) return "✔";
-    //     return idx + 1;
-    // };
     return (React.createElement("div", { className: 'progress-container' }, stepNames && stepNames.map(function (name, idx) {
-        return (React.createElement("div", { className: 'progress-step', style: { width: 100 / (maxPosition + 1) + "%" } },
+        return (React.createElement("div", { key: idx, className: 'progress-step', style: { width: 100 / (maxPosition + 1) + "%" } },
             React.createElement("div", { className: "step-wrapper" },
-                React.createElement("div", { className: 'step-idx ' + getClass(idx) }, idx < currentPosition ? React.createElement("span", null, "\u2713") : idx + 1),
+                React.createElement("div", { onClick: function () { return goToStep(idx); }, className: 'step-idx ' + getClass(idx) }, idx < currentPosition ? React.createElement("span", null, "\u2713") : idx + 1),
                 React.createElement("div", { className: 'step-label' }, name))));
     })));
 };

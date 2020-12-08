@@ -36,7 +36,7 @@
                 position: absolute;
                 z-index: -1;
                 top: 22%;
-                left: -50%;
+                left: -45%;
                 content: "";
                 width: 90%;
                 height: 1px;
@@ -52,7 +52,7 @@
             &.completed, &.current{
                 background-color: #5c8ef2;
                 color: #fff;
-                border: none;
+                border: 2px solid #fff;
                 &::before{
                     height: 2px;
                     background: #5c8ef2;
@@ -61,6 +61,7 @@
 
             &.completed{
                 font-weight: bold;
+                cursor: pointer;
             }
         }
     }

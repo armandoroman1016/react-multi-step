@@ -16,7 +16,7 @@ export interface FormContext {
     complete: boolean;
 }
 
-const [formCtx, FormProvider] = createCtx<FormContext>({
+let ctx: FormContext = {
     inputFields: {},
     currentPosition: 0,
     maxPosition: 0,
@@ -24,20 +24,22 @@ const [formCtx, FormProvider] = createCtx<FormContext>({
     allowSubmission: true,
     errors: false,
     complete: false,
-    onNext: function (continueWithoutFieldFufillment = true) {
+    onNext(continueWithoutFieldFufillment = true) {
         this.allowNext = continueWithoutFieldFufillment;
     },
-    onComplete: function () {
+    onComplete() {
         this.complete = true;
         return this.inputFields;
     },
-    updateFormValues: function (fieldName, fieldValue) {
+    updateFormValues(fieldName, fieldValue) {
         this.inputFields = { ...this.inputFields, [fieldName]: fieldValue };
     },
     stepNames: [],
-    addStepName: function (stepName) {
+    addStepName(stepName) {
         this.stepNames.push(stepName);
-    },
-});
+    }
+}
+
+const [formCtx, FormProvider] = createCtx<FormContext>(ctx);
 
 export { formCtx, FormProvider };
