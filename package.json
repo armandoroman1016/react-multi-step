@@ -1,5 +1,5 @@
 {
-  "name": "react-multi-step-form",
+  "name": "react-multi-step",
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
@@ -23,7 +23,7 @@
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c",
-    "test": "jest --notify --config=./jest.config.js",
+    "test": "jest --notify --watch --config=./jest.config.js",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
