@@ -1,108 +1,67 @@
-.wrapper{
-    height: 120px;
+.progress-container{
+    border-radius: 2px;
+    margin: 10px auto;
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
 }
 
-.progress-bar-container {
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-items: flex-end;
-    padding-bottom: 20px;
-    
-    .progress-step {
-        text-align: center;
-        width: 25%;
+.progress-step{
+
+    .step-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         position: relative;
-        .label {
-            color:#adadad;
-            position: absolute;
-            left: 30%;
-            width: 46px;
+       
+        .step-idx{
+            margin: auto 0;
+            border-radius: 80%;
+            background: #fff;
+            border: 1px solid #D3D3D3;
+            width: 20px;
+            height: 20px;
+            padding: 3px;
             text-align: center;
-            top: 0px;            
-        }
-
-        .index {
-            height: 30px;
-            width: 30px;
-            width: 100%;
-            display: inline-block;
-            transition: background-color 500ms;
-            line-height: 20px;
-            z-index: 1;
-            border-radius: 50%;
-            position: absolute;
-            left: 30%;
-            top: 40px;
-            .content {
-                border-radius: 50%;
-                width: 26px;
-                height: 26px;
-                padding: 8px;
-                border: 2px solid #6cf05b;
-                color: #6cf05b;
-                text-align: center;
-                font: 24px Arial, sans-serif;
-                background: linear-gradient(to left,#fff 50%, rgba(#a1fc95, 1) 50%);
-                background-position: right bottom;
-                background-size: 200% 100%;
+            margin-bottom: 12px;
+            color: #D3D3D3;
+            &:last-of-type{
+                color:red;
             }
-            &.completed {
-                .content {
-                    color: #fff;
-                    background-position: left bottom;
-                    transition: background 0.3s ease-in;
+            &::before{
+                position: absolute;
+                z-index: -1;
+                top: 22%;
+                left: -50%;
+                content: "";
+                width: 90%;
+                height: 1px;
+                background: #D3D3D3;
+            }
+
+            &.first{
+                &::before{
+                    width: 0;
                 }
             }
-            &.current{
-                .content{
-                    background: #a1fc95;
-                    color: #fff
+
+            &.completed, &.current{
+                background-color: #5c8ef2;
+                color: #fff;
+                border: none;
+                &::before{
+                    height: 2px;
+                    background: #5c8ef2;
                 }
             }
-        }
 
-        .index.completed.final:after{
-            width: 0;
-            height: 0;
-        }
-        
-        .index.completed:after {
-            content: "";
-            position: absolute;
-            left: 2%;
-            bottom: 5px;
-            height: 3px;
-            width: 100%;
-            z-index: -1;
-            background-color: #a1fc95;
-            right: 0;
-            transition: all 0.3s ease-in;
-            transition-delay: 0.2s;
-        }
-
-
-
-        .index:after {
-            content: "";
-            width: 0;
-        }
-
-        .index + p{
-            font-weight: bold;
-        }
-
-        .index.current + p{
-            margin: 0;
-            padding: 0;
-            margin-top: 10px;
-            font-size: 18px;
-            transition: font-size .25s ease;
-            transition-delay: .5s;
-        }
-
-        .index.uncomplete + p:only-of-type{
-            color: #adadad;
+            &.completed{
+                font-weight: bold;
+            }
         }
     }
 }

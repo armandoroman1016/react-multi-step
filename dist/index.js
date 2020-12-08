@@ -140,35 +140,32 @@ var Controls = function (props) {
 };
 var templateObject_1, templateObject_2;
 
-___$insertStyle(".wrapper {\n  height: 120px;\n}\n\n.progress-bar-container {\n  display: flex;\n  width: 100%;\n  justify-content: space-around;\n  align-items: flex-end;\n  padding-bottom: 20px;\n}\n.progress-bar-container .progress-step {\n  text-align: center;\n  width: 25%;\n  position: relative;\n}\n.progress-bar-container .progress-step .label {\n  color: #adadad;\n  position: absolute;\n  left: 30%;\n  width: 46px;\n  text-align: center;\n  top: 0px;\n}\n.progress-bar-container .progress-step .index {\n  height: 30px;\n  width: 30px;\n  width: 100%;\n  display: inline-block;\n  transition: background-color 500ms;\n  line-height: 20px;\n  z-index: 1;\n  border-radius: 50%;\n  position: absolute;\n  left: 30%;\n  top: 40px;\n}\n.progress-bar-container .progress-step .index .content {\n  border-radius: 50%;\n  width: 26px;\n  height: 26px;\n  padding: 8px;\n  border: 2px solid #6cf05b;\n  color: #6cf05b;\n  text-align: center;\n  font: 24px Arial, sans-serif;\n  background: linear-gradient(to left, #fff 50%, #a1fc95 50%);\n  background-position: right bottom;\n  background-size: 200% 100%;\n}\n.progress-bar-container .progress-step .index.completed .content {\n  color: #fff;\n  background-position: left bottom;\n  transition: background 0.3s ease-in;\n}\n.progress-bar-container .progress-step .index.current .content {\n  background: #a1fc95;\n  color: #fff;\n}\n.progress-bar-container .progress-step .index.completed.final:after {\n  width: 0;\n  height: 0;\n}\n.progress-bar-container .progress-step .index.completed:after {\n  content: \"\";\n  position: absolute;\n  left: 2%;\n  bottom: 5px;\n  height: 3px;\n  width: 100%;\n  z-index: -1;\n  background-color: #a1fc95;\n  right: 0;\n  transition: all 0.3s ease-in;\n  transition-delay: 0.2s;\n}\n.progress-bar-container .progress-step .index:after {\n  content: \"\";\n  width: 0;\n}\n.progress-bar-container .progress-step .index + p {\n  font-weight: bold;\n}\n.progress-bar-container .progress-step .index.current + p {\n  margin: 0;\n  padding: 0;\n  margin-top: 10px;\n  font-size: 18px;\n  transition: font-size 0.25s ease;\n  transition-delay: 0.5s;\n}\n.progress-bar-container .progress-step .index.uncomplete + p:only-of-type {\n  color: #adadad;\n}");
+___$insertStyle(".progress-container {\n  border-radius: 2px;\n  margin: 10px auto;\n  padding: 20px;\n  width: 80%;\n  display: flex;\n  justify-content: space-between;\n  position: relative;\n}\n\n.progress-step .step-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  position: relative;\n}\n.progress-step .step-wrapper .step-idx {\n  margin: auto 0;\n  border-radius: 80%;\n  background: #fff;\n  border: 1px solid #D3D3D3;\n  width: 20px;\n  height: 20px;\n  padding: 3px;\n  text-align: center;\n  margin-bottom: 12px;\n  color: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx:last-of-type {\n  color: red;\n}\n.progress-step .step-wrapper .step-idx::before {\n  position: absolute;\n  z-index: -1;\n  top: 22%;\n  left: -50%;\n  content: \"\";\n  width: 90%;\n  height: 1px;\n  background: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx.first::before {\n  width: 0;\n}\n.progress-step .step-wrapper .step-idx.completed, .progress-step .step-wrapper .step-idx.current {\n  background-color: #5c8ef2;\n  color: #fff;\n  border: none;\n}\n.progress-step .step-wrapper .step-idx.completed::before, .progress-step .step-wrapper .step-idx.current::before {\n  height: 2px;\n  background: #5c8ef2;\n}\n.progress-step .step-wrapper .step-idx.completed {\n  font-weight: bold;\n}");
 
 var ProgressBar = function () {
     var stepForm = useMultiStep().stepForm;
-    var maxPosition = stepForm.maxPosition, complete = stepForm.complete, currentPosition = stepForm.currentPosition, stepNames = stepForm.stepNames;
+    var stepNames = stepForm.stepNames, maxPosition = stepForm.maxPosition, currentPosition = stepForm.currentPosition;
     var getClass = function (idx) {
-        if (idx === maxPosition && complete)
-            return "index completed final";
+        var str = "";
+        if (idx === 0)
+            str += "first";
         if (currentPosition === idx)
-            return "index current";
+            return str + " current";
         if (currentPosition > idx || currentPosition === maxPosition)
-            return "index completed";
-        return "index uncomplete";
+            return str + " completed";
+        return str + "uncomplete";
     };
-    var getContent = function (idx) {
-        if (currentPosition > idx)
-            return "✔";
-        if (complete && currentPosition === maxPosition)
-            return "✔";
-        return idx + 1;
-    };
-    return (React.createElement("div", { className: "wrapper" },
-        React.createElement("div", { className: "progress-bar-container" }, stepNames &&
-            stepNames.map(function (step, idx) {
-                return (React.createElement("div", { className: "progress-step", key: idx },
-                    React.createElement("div", { className: getClass(idx) },
-                        React.createElement("div", { className: "content" }, getContent(idx))),
-                    React.createElement("p", { className: "label" }, step)));
-            }))));
+    // const getContent = (idx: number) => {
+    //     if (currentPosition > idx) return "✔";
+    //     if (complete && currentPosition === maxPosition) return "✔";
+    //     return idx + 1;
+    // };
+    return (React.createElement("div", { className: 'progress-container' }, stepNames && stepNames.map(function (name, idx) {
+        return (React.createElement("div", { className: 'progress-step', style: { width: 100 / (maxPosition + 1) + "%" } },
+            React.createElement("div", { className: "step-wrapper" },
+                React.createElement("div", { className: 'step-idx ' + getClass(idx) }, idx < currentPosition ? React.createElement("span", null, "\u2713") : idx + 1),
+                React.createElement("div", { className: 'step-label' }, name))));
+    })));
 };
 
 ___$insertStyle(".steps-carousel {\n  overflow: hidden;\n}\n.steps-carousel .inner {\n  display: flex;\n}\n\n.form-step {\n  min-width: 100%;\n  height: 200px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n  visibility: hidden;\n}\n.form-step:first-child {\n  width: 50%;\n}\n\n.form-step.active {\n  visibility: visible;\n}");
