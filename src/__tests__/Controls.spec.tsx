@@ -1,9 +1,9 @@
 import * as React from "react";
 import { findByText, fireEvent, queryByText, render } from "../utils/test-utils";
-import Controls from "../Components/Controls";
+import Controls from "../components/Controls";
 
 import MultiStep from "../index";
-import { Test, Test2, Test3, Test4 } from "../TestComponents/mock";
+import { Test, Test2, Test3, Test4 } from "../test_components/mock";
 import { NonEmptyArray, Step } from "../utils/types";
 import '@testing-library/jest-dom/extend-expect'
 import userEvent from "@testing-library/user-event"

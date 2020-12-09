@@ -29,9 +29,9 @@
             text-align: center;
             margin-bottom: 12px;
             color: #D3D3D3;
-            &:last-of-type{
-                color:red;
-            }
+            // &:last-of-type{
+            //     color:red;
+            // }
             &::before{
                 position: absolute;
                 z-index: -1;
@@ -57,6 +57,10 @@
                     height: 2px;
                     background: #5c8ef2;
                 }
+            }
+
+            &.current.error{
+                background-color: #f73a60;
             }
 
             &.completed{

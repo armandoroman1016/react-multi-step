@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./FormStep.scss";
 export interface FormStepProps {
     component: React.ComponentType;
     stepIndex: number;

@@ -73,22 +73,8 @@ var ctx = {
     inputFields: {},
     currentPosition: 0,
     maxPosition: 0,
-    allowNext: true,
-    allowSubmission: true,
     errors: false,
-    complete: false,
-    onNext: function (continueWithoutFieldFufillment) {
-        if (continueWithoutFieldFufillment === void 0) { continueWithoutFieldFufillment = true; }
-        this.allowNext = continueWithoutFieldFufillment;
-    },
-    onComplete: function () {
-        this.complete = true;
-        return this.inputFields;
-    },
-    updateFormValues: function (fieldName, fieldValue) {
-        var _a;
-        this.inputFields = __assign(__assign({}, this.inputFields), (_a = {}, _a[fieldName] = fieldValue, _a));
-    },
+    completed: false,
     stepNames: [],
     addStepName: function (stepName) {
         this.stepNames.push(stepName);
@@ -98,7 +84,20 @@ var _a = createCtx(ctx), formCtx = _a[0], FormProvider = _a[1];
 
 var useMultiStep = function () {
     var _a = React.useContext(formCtx), state = _a.state, update = _a.update;
-    return { stepForm: state, updateMultiStep: update };
+    function complete() {
+        if (!state.errors) {
+            update(__assign(__assign({}, state), { completed: true }));
+        }
+        return state.inputFields;
+    }
+    function updateVals(fieldName, fieldValue) {
+        var _a;
+        update(__assign(__assign({}, state), { inputFields: __assign(__assign({}, state.inputFields), (_a = {}, _a[fieldName] = fieldValue, _a)) }));
+    }
+    function setError(b) {
+        update(__assign(__assign({}, state), { errors: b }));
+    }
+    return { stepForm: state, updateMultiStep: update, complete: complete, updateVals: updateVals, setError: setError };
 };
 
 var Button = styled__default['default'].button(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n    border-radius: 4px;\n    border: none;\n    padding: 8px 10px;\n    background: #5c8ef2;\n    color: #fff;\n    cursor: pointer;\n    width: 150px;\n    margin-bottom: 12px;\n"], ["\n    border-radius: 4px;\n    border: none;\n    padding: 8px 10px;\n    background: #5c8ef2;\n    color: #fff;\n    cursor: pointer;\n    width: 150px;\n    margin-bottom: 12px;\n"])));
@@ -131,9 +130,14 @@ var Controls = function (props) {
             return React.createElement(Prev, { toggleSteps: function () { return toggleSteps(direction); } });
         if (Next && direction === "increment")
             return React.createElement(Next, { toggleSteps: function () { return toggleSteps(direction); } });
+        var errorStyles = {};
+        if (stepForm.errors)
+            errorStyles = {
+                background: " #f73a60"
+            };
         // default controls
         var defaultText = direction === "decrement" ? "Previous" : "Next";
-        return React.createElement(Button, { style: buttonStyles, onClick: function () { return toggleSteps(direction); } }, buttonText || defaultText);
+        return React.createElement(Button, { disabled: stepForm.errors, style: stepForm.errors ? __assign(__assign({}, buttonStyles), errorStyles) : buttonStyles, onClick: function () { return toggleSteps(direction); } }, buttonText || defaultText);
     };
     return (React.createElement(Container, null,
         currentPosition > 0 && useButton("decrement", prevButtonText),
@@ -141,35 +145,42 @@ var Controls = function (props) {
 };
 var templateObject_1, templateObject_2;
 
-___$insertStyle(".progress-container {\n  border-radius: 2px;\n  margin: 10px auto;\n  padding: 20px;\n  width: 80%;\n  display: flex;\n  justify-content: space-between;\n  position: relative;\n}\n\n.progress-step .step-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  position: relative;\n}\n.progress-step .step-wrapper .step-idx {\n  margin: auto 0;\n  border-radius: 80%;\n  background: #fff;\n  border: 1px solid #D3D3D3;\n  width: 20px;\n  height: 20px;\n  padding: 3px;\n  text-align: center;\n  margin-bottom: 12px;\n  color: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx:last-of-type {\n  color: red;\n}\n.progress-step .step-wrapper .step-idx::before {\n  position: absolute;\n  z-index: -1;\n  top: 22%;\n  left: -45%;\n  content: \"\";\n  width: 90%;\n  height: 1px;\n  background: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx.first::before {\n  width: 0;\n}\n.progress-step .step-wrapper .step-idx.completed, .progress-step .step-wrapper .step-idx.current {\n  background-color: #5c8ef2;\n  color: #fff;\n  border: 2px solid #fff;\n}\n.progress-step .step-wrapper .step-idx.completed::before, .progress-step .step-wrapper .step-idx.current::before {\n  height: 2px;\n  background: #5c8ef2;\n}\n.progress-step .step-wrapper .step-idx.completed {\n  font-weight: bold;\n  cursor: pointer;\n}");
+___$insertStyle(".progress-container {\n  border-radius: 2px;\n  margin: 10px auto;\n  padding: 20px;\n  width: 80%;\n  display: flex;\n  justify-content: space-between;\n  position: relative;\n}\n\n.progress-step .step-wrapper {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  position: relative;\n}\n.progress-step .step-wrapper .step-idx {\n  margin: auto 0;\n  border-radius: 80%;\n  background: #fff;\n  border: 1px solid #D3D3D3;\n  width: 20px;\n  height: 20px;\n  padding: 3px;\n  text-align: center;\n  margin-bottom: 12px;\n  color: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx::before {\n  position: absolute;\n  z-index: -1;\n  top: 22%;\n  left: -45%;\n  content: \"\";\n  width: 90%;\n  height: 1px;\n  background: #D3D3D3;\n}\n.progress-step .step-wrapper .step-idx.first::before {\n  width: 0;\n}\n.progress-step .step-wrapper .step-idx.completed, .progress-step .step-wrapper .step-idx.current {\n  background-color: #5c8ef2;\n  color: #fff;\n  border: 2px solid #fff;\n}\n.progress-step .step-wrapper .step-idx.completed::before, .progress-step .step-wrapper .step-idx.current::before {\n  height: 2px;\n  background: #5c8ef2;\n}\n.progress-step .step-wrapper .step-idx.current.error {\n  background-color: #f73a60;\n}\n.progress-step .step-wrapper .step-idx.completed {\n  font-weight: bold;\n  cursor: pointer;\n}");
 
 var ProgressBar = function () {
     var _a = useMultiStep(), stepForm = _a.stepForm, updateMultiStep = _a.updateMultiStep;
-    var stepNames = stepForm.stepNames, maxPosition = stepForm.maxPosition, currentPosition = stepForm.currentPosition;
+    var stepNames = stepForm.stepNames, maxPosition = stepForm.maxPosition, currentPosition = stepForm.currentPosition, errors = stepForm.errors;
     var goToStep = function (selectedIdx) {
         if (currentPosition > selectedIdx) {
-            updateMultiStep(__assign(__assign({}, stepForm), { currentPosition: selectedIdx }));
+            updateMultiStep(__assign(__assign({}, stepForm), { currentPosition: selectedIdx, completed: false }));
         }
     };
     var getClass = function (idx) {
         var str = "";
         if (idx === 0)
             str += "first";
+        if (currentPosition === idx && errors)
+            return str + " current error";
         if (currentPosition === idx)
             return str + " current";
-        if (currentPosition > idx || currentPosition === maxPosition)
+        if (currentPosition > idx || currentPosition === maxPosition || stepForm.completed)
             return str + " completed";
         return str + "uncomplete";
+    };
+    var getContent = function (idx) {
+        if (idx < currentPosition || stepForm.completed)
+            return React.createElement("span", null, "\u2713");
+        return idx + 1;
     };
     return (React.createElement("div", { className: 'progress-container' }, stepNames && stepNames.map(function (name, idx) {
         return (React.createElement("div", { key: idx, className: 'progress-step', style: { width: 100 / (maxPosition + 1) + "%" } },
             React.createElement("div", { className: "step-wrapper" },
-                React.createElement("div", { onClick: function () { return goToStep(idx); }, className: 'step-idx ' + getClass(idx) }, idx < currentPosition ? React.createElement("span", null, "\u2713") : idx + 1),
+                React.createElement("div", { onClick: function () { return goToStep(idx); }, className: 'step-idx ' + getClass(idx) }, getContent(idx)),
                 React.createElement("div", { className: 'step-label' }, name))));
     })));
 };
 
-___$insertStyle(".steps-carousel {\n  overflow: hidden;\n}\n.steps-carousel .inner {\n  display: flex;\n}\n\n.form-step {\n  min-width: 100%;\n  height: 200px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n  visibility: hidden;\n}\n.form-step:first-child {\n  width: 50%;\n}\n\n.form-step.active {\n  visibility: visible;\n}");
+___$insertStyle(".steps-carousel {\n  overflow: hidden;\n}\n.steps-carousel .inner {\n  display: flex;\n}\n\n.form-step {\n  min-width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  overflow: hidden;\n  visibility: hidden;\n}\n.form-step:first-child {\n  width: 50%;\n}\n\n.form-step.active {\n  visibility: visible;\n}");
 
 var FormStep = function (props) {
     var Component = props.component, stepIndex = props.stepIndex;

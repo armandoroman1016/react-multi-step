@@ -1,9 +1,6 @@
 import * as React from "react";
 import { render, RenderOptions } from "@testing-library/react";
-// import { ThemeProvider } from 'my-ui-lib'
-// import { TranslationProvider } from 'my-i18n-lib'
-
-import { FormProvider } from "../Contexts/FormContext";
+import { FormProvider } from "../contexts/FormContext";
 
 interface Options {
     providerProps?: Record<any, unknown>;

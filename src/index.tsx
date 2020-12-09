@@ -1,4 +1,4 @@
-import { MultiStep, Controls } from './Components'
+import { MultiStep, Controls } from './components'
 import { useMultiStep } from './utils/useMultiStep'
 
 export { useMultiStep, Controls }

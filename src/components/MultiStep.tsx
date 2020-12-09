@@ -1,6 +1,6 @@
 import * as React from "react";
 import FormContainer from "./FormContainer";
-import { FormProvider } from "../Contexts/FormContext";
+import { FormProvider } from "../contexts/FormContext";
 import * as CSS from "csstype";
 import { NonEmptyArray, Step } from "../utils/types";
 

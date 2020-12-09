@@ -3,16 +3,11 @@ export interface FormContext {
     inputFields: Record<string, unknown>;
     currentPosition: number;
     maxPosition: number;
-    currentForm?: React.ComponentType;
-    allowNext: boolean;
-    allowSubmission: boolean;
-    onNext: () => void;
-    onComplete: () => Record<string, unknown>;
-    updateFormValues: (fieldName: string, fieldValue: string) => void;
-    errors: boolean;
     stepNames: string[];
+    errors: boolean;
+    completed: boolean;
+    currentForm?: React.ComponentType;
     addStepName: (stepName: string) => void;
-    complete: boolean;
 }
 declare const formCtx: import("react").Context<{
     state: FormContext;

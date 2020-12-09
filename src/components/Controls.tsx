@@ -63,9 +63,15 @@ const Controls = (props: ControlProps) => {
         if(Prev && direction === "decrement") return <Prev toggleSteps={() => toggleSteps(direction)} />
         if(Next && direction === "increment") return <Next toggleSteps={() => toggleSteps(direction)} />
         
+        let errorStyles: CSS.Properties = {}
+        
+        if(stepForm.errors) errorStyles = {
+            background: " #f73a60"
+        }
+
         // default controls
         let defaultText = direction === "decrement" ? "Previous" : "Next"
-        return <Button style={buttonStyles} onClick={() => toggleSteps(direction)}>
+        return <Button disabled={stepForm.errors} style={stepForm.errors ? {...buttonStyles, ...errorStyles}: buttonStyles} onClick={() => toggleSteps(direction)}>
                 {buttonText || defaultText}
                 </Button>
     }
