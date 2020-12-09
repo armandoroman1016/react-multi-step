@@ -11,7 +11,7 @@ export interface FormContext {
     addStepName: (stepName: string) => void;
 }
 
-export let ctx: FormContext = {
+export const ctx: FormContext = {
     inputFields: {},
     currentPosition: 0,
     maxPosition: 0,
@@ -20,8 +20,8 @@ export let ctx: FormContext = {
     stepNames: [],
     addStepName(stepName) {
         this.stepNames.push(stepName);
-    }
-}
+    },
+};
 
 const [formCtx, FormProvider] = createCtx<FormContext>(ctx);
 

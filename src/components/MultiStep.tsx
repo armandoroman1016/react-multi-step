@@ -13,13 +13,10 @@ interface MultiStepProps {
 }
 
 const MultiStep = (props: MultiStepProps) => {
-
-    const {children} = props
-    
     return (
         <React.Fragment>
             <FormProvider>
-                <FormContainer steps={props.steps} children = {children}/>
+                <FormContainer steps={props.steps} />
             </FormProvider>
         </React.Fragment>
     );

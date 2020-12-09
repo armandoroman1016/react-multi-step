@@ -59,7 +59,7 @@ const Test3 = () => {
         setVal(e.target.value);
         updateVals(e.target.name, e.target.value);
     };
-    
+
     const handleSubmit = (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
     };
@@ -85,7 +85,7 @@ const Test4 = () => {
 
     const help = (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
-        const packet = complete()
+        const packet = complete();
         return packet;
     };
 

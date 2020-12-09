@@ -29,8 +29,7 @@ const Container = styled.div`
     justify-content: space-between;
 `;
 
-const FormContainer = ({styles, steps, children }: FormContainerProps) => {
-
+const FormContainer = ({ styles, steps, children }: FormContainerProps) => {
     const { stepForm, updateMultiStep } = useMultiStep();
 
     useEffect(() => {

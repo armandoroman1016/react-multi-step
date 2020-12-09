@@ -1,5 +1,4 @@
+import Controls from "./Controls";
+import MultiStep from "./MultiStep";
 
-import Controls from './Controls'
-import MultiStep from './MultiStep'
-
-export { Controls, MultiStep }
+export { Controls, MultiStep };
