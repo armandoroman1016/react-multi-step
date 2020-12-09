@@ -11,7 +11,7 @@ export interface FormContext {
     addStepName: (stepName: string) => void;
 }
 
-let ctx: FormContext = {
+export let ctx: FormContext = {
     inputFields: {},
     currentPosition: 0,
     maxPosition: 0,

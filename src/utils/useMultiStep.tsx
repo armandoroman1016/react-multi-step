@@ -1,8 +1,9 @@
 import { useContext } from "react";
 import { formCtx } from "../contexts/FormContext";
+import { testCtx } from '../utils/test-utils'
 
-export const useMultiStep = () => {
-    const { state, update } = useContext(formCtx);
+export const useMultiStep = () => {    
+    const { state, update } = useContext(testCtx || formCtx);
 
     function complete(){
         if(!state.errors){
