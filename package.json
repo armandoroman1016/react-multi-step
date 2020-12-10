@@ -23,7 +23,8 @@
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c",
-    "test": "jest --notify --config=./jest.config.js",
+    "test": "jest --notify --watch --config=./jest.config.js",
+    "test:no-watch": "jest --config=./jest.config.js --watchAll=false",
     "eject": "react-scripts eject",
     "lint": "eslint './src/*/**/*.{js,ts,tsx}' --quiet --fix"
   },
@@ -78,7 +79,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && npm run test",
+      "pre-commit": "lint-staged && npm run test:no-watch",
       "pre-push": "npm run test"
     }
   },

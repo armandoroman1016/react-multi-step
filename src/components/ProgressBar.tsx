@@ -15,10 +15,10 @@ const ProgressBar = () => {
     const getClass = (idx: number) => {
         let str = "";
 
-        if (idx === 0) str += "first";
-        if (currentPosition === idx && errors) return str + " current error";
-        if (currentPosition === idx) return str + " current";
-        if (currentPosition > idx || currentPosition === maxPosition || stepForm.completed) return str + " completed";
+        if (idx === 0) str += "first ";
+        if (currentPosition === idx && errors) return str + "current error";
+        if (currentPosition === idx) return str + "current";
+        if (currentPosition > idx || currentPosition === maxPosition || stepForm.completed) return str + "completed";
         return str + "uncomplete";
     };
 

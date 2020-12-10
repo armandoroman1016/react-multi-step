@@ -2,7 +2,9 @@ import * as React from "react";
 import { render } from "../utils/test-utils";
 import ProgressBar from "../components/ProgressBar";
 import "@testing-library/jest-dom/extend-expect";
+import { cleanup } from "@testing-library/react";
 
+afterEach(cleanup);
 const stepNames = ["one", "two", "three", "four"];
 const maxPosition = 4;
 const currentPosition = 0;
@@ -24,5 +26,10 @@ describe("ProgressBar", () => {
         expect(second).toBeInTheDocument();
         expect(third).toBeInTheDocument();
         expect(fourth).toBeInTheDocument();
+    });
+    it("displays '✓' on completed steps", async () => {
+        const { container } = render(<ProgressBar />, { providerProps: { ...providerProps, currentPosition: 1 } });
+        const x = container.querySelector(".step-idx.completed");
+        expect(x.textContent).toBe("✓");
     });
 });

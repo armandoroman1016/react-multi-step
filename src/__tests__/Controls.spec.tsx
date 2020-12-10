@@ -3,6 +3,7 @@ import { render } from "../utils/test-utils";
 import Controls from "../components/Controls";
 import userEvent from "@testing-library/user-event";
 import { wait } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
 
 const currentPosition = 0;
 const maxPosition = 4;
