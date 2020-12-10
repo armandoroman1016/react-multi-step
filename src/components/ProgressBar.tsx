@@ -13,6 +13,12 @@ interface ProgressBarProps {
     errorBackground?: string;
     errorFontColor?: string;
     containerClass?: string;
+    labelColor?: string;
+    font?: string;
+    completeLabelColor?: string;
+    activeLabelColor?: string;
+    errorLabelColor?: string;
+    uncompleteLabelColor?: string;
 }
 
 const ProgressContainer = styled.div`
@@ -44,6 +50,7 @@ const StepInfo = styled.div<ProgressBarProps>`
     background: #fff;
     border: 1px solid #d3d3d3;
     color: #d3d3d3;
+    font: ${({ font }) => font || ""};
 
     &::before {
         position: absolute;
@@ -81,20 +88,39 @@ const StepInfo = styled.div<ProgressBarProps>`
         &::before {
             height: 2px;
             background: ${(props) => {
-                console.log(props);
-                return props.activeBackground || "#5c8ef2";
+                return props.completedBackground || "#5c8ef2";
             }}};
         }
     }
 
     &.current.error {
-        background-color: ${({ errorBackground }) => errorBackground || " #f73a60"};
+        background-color: ${({ errorBackground }) => errorBackground || "#f73a60"};
         color: ${({ errorFontColor }) => errorFontColor || "#fff"};
     }
 
     &.completed {
         font-weight: bold;
         cursor: pointer;
+    }
+`;
+
+const StepLabel = styled.div<ProgressBarProps>`
+    font: ${({ font }) => font || ""};
+
+    &.completed {
+        color: ${({ completeLabelColor, labelColor }) => completeLabelColor || labelColor || "#5c8ef2"};
+    }
+
+    &.current {
+        color: ${({ activeLabelColor, labelColor }) => activeLabelColor || labelColor || "#5c8ef2"};
+    }
+
+    &.current.error {
+        color: ${({ errorLabelColor, errorFontColor }) => errorLabelColor || errorFontColor || "#f73a60"};
+    }
+
+    &.uncomplete {
+        color: ${({ uncompleteLabelColor }) => uncompleteLabelColor || "#d3d3d3"};
     }
 `;
 
@@ -130,10 +156,34 @@ const ProgressBar = (props: ProgressBarProps) => {
                     return (
                         <div key={idx} className="progress-step" style={{ width: `${100 / (maxPosition + 1)}%` }}>
                             <StepItem className="step-wrapper">
-                                <StepInfo onClick={() => goToStep(idx)} className={"step-idx " + getClass(idx)}>
+                                <StepInfo
+                                    activeBackground={props.activeBackground}
+                                    activeFontColor={props.activeFontColor}
+                                    completeFontColor={props.completeFontColor}
+                                    completedBackground={props.completedBackground}
+                                    errorBackground={props.errorBackground}
+                                    errorFontColor={props.errorFontColor}
+                                    incompleteBackground={props.incompleteBackground}
+                                    incompleteFontColor={props.incompleteFontColor}
+                                    font={props.font}
+                                    onClick={() => goToStep(idx)}
+                                    className={"step-idx " + getClass(idx)}
+                                >
                                     {getContent(idx)}
                                 </StepInfo>
-                                <div className="step-label">{name}</div>
+                                <StepLabel
+                                    className={"label " + getClass(idx)}
+                                    font={props.font}
+                                    labelColor={props.labelColor}
+                                    completeLabelColor={props.completeLabelColor}
+                                    activeLabelColor={props.activeLabelColor}
+                                    errorLabelColor={props.errorLabelColor}
+                                    uncompleteLabelColor={props.uncompleteLabelColor}
+                                    errorFontColor={props.errorFontColor}
+                                    activeBackground={props.activeBackground}
+                                >
+                                    {name}
+                                </StepLabel>
                             </StepItem>
                         </div>
                     );

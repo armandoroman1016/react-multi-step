@@ -6,22 +6,22 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="progress-container"
+        class="ProgressBar__ProgressContainer-sc-15e9afs-0 cZbfYF"
       >
         <div
           class="progress-step"
           style="width: 20%;"
         >
           <div
-            class="step-wrapper"
+            class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
           >
             <div
-              class="step-idx first current"
+              class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx first current"
             >
               1
             </div>
             <div
-              class="step-label"
+              class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label first current"
             >
               one
             </div>
@@ -32,15 +32,15 @@ Object {
           style="width: 20%;"
         >
           <div
-            class="step-wrapper"
+            class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
           >
             <div
-              class="step-idx uncomplete"
+              class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
             >
               2
             </div>
             <div
-              class="step-label"
+              class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
             >
               two
             </div>
@@ -51,15 +51,15 @@ Object {
           style="width: 20%;"
         >
           <div
-            class="step-wrapper"
+            class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
           >
             <div
-              class="step-idx uncomplete"
+              class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
             >
               3
             </div>
             <div
-              class="step-label"
+              class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
             >
               three
             </div>
@@ -70,15 +70,15 @@ Object {
           style="width: 20%;"
         >
           <div
-            class="step-wrapper"
+            class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
           >
             <div
-              class="step-idx uncomplete"
+              class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
             >
               4
             </div>
             <div
-              class="step-label"
+              class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
             >
               four
             </div>
@@ -89,22 +89,22 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="progress-container"
+      class="ProgressBar__ProgressContainer-sc-15e9afs-0 cZbfYF"
     >
       <div
         class="progress-step"
         style="width: 20%;"
       >
         <div
-          class="step-wrapper"
+          class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
         >
           <div
-            class="step-idx first current"
+            class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx first current"
           >
             1
           </div>
           <div
-            class="step-label"
+            class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label first current"
           >
             one
           </div>
@@ -115,15 +115,15 @@ Object {
         style="width: 20%;"
       >
         <div
-          class="step-wrapper"
+          class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
         >
           <div
-            class="step-idx uncomplete"
+            class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
           >
             2
           </div>
           <div
-            class="step-label"
+            class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
           >
             two
           </div>
@@ -134,15 +134,15 @@ Object {
         style="width: 20%;"
       >
         <div
-          class="step-wrapper"
+          class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
         >
           <div
-            class="step-idx uncomplete"
+            class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
           >
             3
           </div>
           <div
-            class="step-label"
+            class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
           >
             three
           </div>
@@ -153,15 +153,15 @@ Object {
         style="width: 20%;"
       >
         <div
-          class="step-wrapper"
+          class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
         >
           <div
-            class="step-idx uncomplete"
+            class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
           >
             4
           </div>
           <div
-            class="step-label"
+            class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
           >
             four
           </div>
