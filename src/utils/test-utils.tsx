@@ -1,17 +1,20 @@
 import * as React from "react";
-import { render, RenderOptions } from "@testing-library/react";
-// import { ThemeProvider } from 'my-ui-lib'
-// import { TranslationProvider } from 'my-i18n-lib'
+import { render, RenderOptions, RenderResult } from "@testing-library/react";
+import { createCtx } from "./createCtx";
+import { formCtx, ctx } from "../contexts/FormContext";
 
-import { FormProvider } from "../Contexts/FormContext";
-
+export let testCtx: typeof formCtx;
 interface Options {
-    providerProps?: Record<any, unknown>;
+    providerProps?: Record<string, unknown>;
     renderOptions?: RenderOptions;
 }
 
-function customRender(ui: React.ReactElement, options: Options) {
-    return render(<FormProvider>{ui}</FormProvider>, options.renderOptions);
+function customRender(ui: React.ReactElement, options: Options): RenderResult {
+    const c = { ...ctx, ...options?.providerProps };
+    const [formCtx, Provider] = createCtx(c);
+    testCtx = formCtx;
+
+    return render(<Provider>{ui}</Provider>, options.renderOptions);
 }
 
 // re-export everything

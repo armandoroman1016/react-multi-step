@@ -1,6 +1,6 @@
 import * as React from "react";
 import FormContainer from "./FormContainer";
-import { FormProvider } from "../Contexts/FormContext";
+import { FormProvider } from "../contexts/FormContext";
 import * as CSS from "csstype";
 import { NonEmptyArray, Step } from "../utils/types";
 
@@ -10,16 +10,16 @@ interface MultiStepProps {
     styles?: CSS.Properties;
     children?: React.ReactNode;
     steps: NonEmptyArray<Step>;
+    formTransition?: string;
 }
 
 const MultiStep = (props: MultiStepProps) => {
-
-    const {children} = props
-    
     return (
         <React.Fragment>
             <FormProvider>
-                <FormContainer steps={props.steps} children = {children}/>
+                <FormContainer steps={props.steps} transition={props.formTransition || ""}>
+                    {props.children}
+                </FormContainer>
             </FormProvider>
         </React.Fragment>
     );

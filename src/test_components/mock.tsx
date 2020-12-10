@@ -8,11 +8,11 @@ import { useMultiStep } from "../utils/useMultiStep";
 const Test = () => {
     const [val, setVal] = React.useState("");
 
-    const { stepForm } = useMultiStep();
+    const { updateVals } = useMultiStep();
 
     const handleChange = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
-        stepForm.updateFormValues(e.target.name, e.target.value);
+        updateVals(e.target.name, e.target.value);
     };
 
     const handleSubmit = (e: React.BaseSyntheticEvent) => {
@@ -31,11 +31,11 @@ const Test = () => {
 const Test2 = () => {
     const [val, setVal] = React.useState("");
 
-    const { stepForm } = useMultiStep();
+    const { updateVals } = useMultiStep();
 
     const handleChange = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
-        stepForm.updateFormValues(e.target.name, e.target.value);
+        updateVals(e.target.name, e.target.value);
     };
     const handleSubmit = (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
@@ -53,12 +53,13 @@ const Test2 = () => {
 const Test3 = () => {
     const [val, setVal] = React.useState("");
 
-    const { stepForm } = useMultiStep();
+    const { updateVals, setError } = useMultiStep();
 
     const handleChange = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
-        stepForm.updateFormValues(e.target.name, e.target.value);
+        updateVals(e.target.name, e.target.value);
     };
+
     const handleSubmit = (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
     };
@@ -75,16 +76,16 @@ const Test3 = () => {
 const Test4 = () => {
     const [val, setVal] = React.useState("");
 
-    const { stepForm } = useMultiStep();
+    const { complete, updateVals } = useMultiStep();
 
     const handleChange = (e: React.BaseSyntheticEvent) => {
         setVal(e.target.value);
-        stepForm.updateFormValues(e.target.name, e.target.value);
+        updateVals(e.target.name, e.target.value);
     };
 
     const help = (e: React.BaseSyntheticEvent) => {
         e.preventDefault();
-        const packet = stepForm.onComplete();
+        const packet = complete();
         return packet;
     };
 

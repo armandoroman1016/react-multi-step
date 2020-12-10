@@ -1,5 +1,5 @@
-import { MultiStep, Controls } from './Components'
-import { useMultiStep } from './utils/useMultiStep'
+import { MultiStep, Controls, ProgressBar } from "./components";
+import { useMultiStep } from "./utils/useMultiStep";
 
-export { useMultiStep, Controls }
+export { useMultiStep, Controls, ProgressBar };
 export default MultiStep;

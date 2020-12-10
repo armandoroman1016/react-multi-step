@@ -5,13 +5,13 @@ import { useMultiStep } from "../utils/useMultiStep";
 import styled from "styled-components";
 
 interface ControlButtons {
-    prev: typeof React.Component
-    next: typeof React.Component
+    prev: typeof React.Component;
+    next: typeof React.Component;
 }
 interface ControlProps {
     buttonStyles?: CSS.Properties;
     submitFunction?: React.MouseEventHandler<HTMLButtonElement>;
-    controls?: ControlButtons
+    controls?: ControlButtons;
     prevButtonText?: string;
     nextButtonText?: string;
 }
@@ -52,23 +52,35 @@ const Controls = (props: ControlProps) => {
     };
 
     const useButton = (direction: "decrement" | "increment", buttonText?: string) => {
-
         // rendering users custom controls, passing a toggle steps fn that the user must call on for functionality
-        let Prev
-        let Next
-        if(controls){
-            Prev = controls.prev
-            Next = controls.next
+        let Prev;
+        let Next;
+        if (controls) {
+            Prev = controls.prev;
+            Next = controls.next;
         }
-        if(Prev && direction === "decrement") return <Prev toggleSteps={() => toggleSteps(direction)} />
-        if(Next && direction === "increment") return <Next toggleSteps={() => toggleSteps(direction)} />
-        
+        if (Prev && direction === "decrement") return <Prev toggleSteps={() => toggleSteps(direction)} />;
+        if (Next && direction === "increment") return <Next toggleSteps={() => toggleSteps(direction)} />;
+
+        let errorStyles: CSS.Properties = {};
+
+        if (stepForm.errors)
+            errorStyles = {
+                background: " #f73a60",
+            };
+
         // default controls
-        let defaultText = direction === "decrement" ? "Previous" : "Next"
-        return <Button style={buttonStyles} onClick={() => toggleSteps(direction)}>
+        const defaultText = direction === "decrement" ? "Previous" : "Next";
+        return (
+            <Button
+                disabled={stepForm.errors}
+                style={stepForm.errors ? { ...buttonStyles, ...errorStyles } : buttonStyles}
+                onClick={() => toggleSteps(direction)}
+            >
                 {buttonText || defaultText}
-                </Button>
-    }
+            </Button>
+        );
+    };
 
     return (
         <Container>

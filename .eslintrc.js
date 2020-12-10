@@ -18,10 +18,10 @@ module.exports = {
         ecmaFeatures: {
             jsx: true,
         },
-        ecmaVersion: 12,
+        ecmaVersion: 2020,
         sourceType: "module",
     },
-    plugins: ["react", "@typescript-eslint"],
+    plugins: ["react", "@typescript-eslint", "prettier"],
     rules: {
         semi: ["error", "always"],
         quotes: ["error", "double"],

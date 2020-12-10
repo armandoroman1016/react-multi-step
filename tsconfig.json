@@ -17,8 +17,10 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strict": true
   },
-  "include": ["src", "src/Contexts/FormContext.ts"],
+  "types": ["typePatches"],
+  "include": ["src", "src/contexts/FormContext.ts"],
   "exclude": ["node_modules", "dist", "example", "rollup.config.js", "./src/__tests__"]
 }
