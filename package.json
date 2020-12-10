@@ -90,5 +90,8 @@
     "*.{js,ts,tsx}": [
       "npm run lint"
     ]
+  },
+  "resolutions": {
+     "styled-components": "^5"
   }
 }

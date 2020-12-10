@@ -17,7 +17,9 @@ const MultiStep = (props: MultiStepProps) => {
     return (
         <React.Fragment>
             <FormProvider>
-                <FormContainer steps={props.steps} transition={props.formTransition || ""} />
+                <FormContainer steps={props.steps} transition={props.formTransition || ""}>
+                    {props.children}
+                </FormContainer>
             </FormProvider>
         </React.Fragment>
     );

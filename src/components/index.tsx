@@ -1,4 +1,4 @@
 import Controls from "./Controls";
 import MultiStep from "./MultiStep";
-
-export { Controls, MultiStep };
+import ProgressBar from "./ProgressBar";
+export { Controls, MultiStep, ProgressBar };

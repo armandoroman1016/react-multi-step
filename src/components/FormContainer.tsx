@@ -33,6 +33,18 @@ const Container = styled.div`
 const FormContainer = ({ styles, steps, children, transition }: FormContainerProps) => {
     const { stepForm, updateMultiStep } = useMultiStep();
 
+    let customControls = false;
+    let customProgress = false;
+
+    const componentChildren = React.Children.toArray(children);
+
+    componentChildren.forEach((child) => {
+        if (child["type"].name === "ProgressBar") customProgress = true;
+        else if (child["type"].name === "Controls") customControls = true;
+    });
+
+    componentChildren.splice(1, 0, true);
+
     useEffect(() => {
         if (steps) {
             const maxPosition = steps.length - 1;
@@ -43,10 +55,39 @@ const FormContainer = ({ styles, steps, children, transition }: FormContainerPro
 
     return (
         <Container style={styles}>
-            <ProgressBar />
-            <FormCarousel steps={steps} transition={transition || ""} />
-            {!React.Children.count(children) && <Controls />}
-            {children}
+            {!customProgress && !customControls ? (
+                <>
+                    <ProgressBar />
+                    <FormCarousel steps={steps} transition={transition || ""} />
+                    <Controls />
+                </>
+            ) : null}
+
+            {customProgress && !customControls ? (
+                <>
+                    {children}
+                    <FormCarousel steps={steps} transition={transition || ""} />
+                    <Controls />
+                </>
+            ) : null}
+
+            {!customProgress && customControls ? (
+                <>
+                    <ProgressBar />
+                    <FormCarousel steps={steps} transition={transition || ""} />
+                    {children}
+                </>
+            ) : null}
+
+            {customProgress && customControls ? (
+                <>
+                    {componentChildren.map((child, idx) => {
+                        if (idx !== 0 && idx !== 2)
+                            return <FormCarousel steps={steps} transition={transition || ""} key={idx} />;
+                        return child;
+                    })}
+                </>
+            ) : null}
         </Container>
     );
 };
