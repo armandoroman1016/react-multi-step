@@ -1,5 +1,5 @@
 import * as React from "react";
-import { render, RenderOptions } from "@testing-library/react";
+import { render, RenderOptions, RenderResult } from "@testing-library/react";
 import { createCtx } from "./createCtx";
 import { formCtx, ctx } from "../contexts/FormContext";
 
@@ -9,7 +9,7 @@ interface Options {
     renderOptions?: RenderOptions;
 }
 
-function customRender(ui: React.ReactElement, options: Options) {
+function customRender(ui: React.ReactElement, options: Options): RenderResult {
     const c = { ...ctx, ...options?.providerProps };
     const [formCtx, Provider] = createCtx(c);
     testCtx = formCtx;

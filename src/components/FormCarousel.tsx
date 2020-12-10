@@ -3,14 +3,14 @@ import { useMultiStep } from "../utils/useMultiStep";
 import FormStep from "./FormStep";
 
 interface Props {
-    nu?: number;
     steps: any[];
+    transition?: string;
 }
 
 const { useEffect, useRef, useState } = React;
 
 export const FormCarousel = (props: Props) => {
-    const { steps } = props;
+    const { steps, transition } = props;
     const { stepForm } = useMultiStep();
     const { currentPosition } = stepForm;
 
@@ -28,7 +28,7 @@ export const FormCarousel = (props: Props) => {
             if (n.length < 1) return;
             const carouselPosition = carouselWidth * stepForm.currentPosition;
             stepRef.current.style.transform = `translateX(-${carouselPosition}px)`;
-            stepRef.current.style.transition = "transform .6s cubic-bezier(.62,.23,.27,1.44)";
+            stepRef.current.style.transition = `transform ${transition || ".6s cubic-bezier(.62,.23,.27,1.44)"}`;
         }
     }, [stepRef, currentPosition, carouselWidth]);
 

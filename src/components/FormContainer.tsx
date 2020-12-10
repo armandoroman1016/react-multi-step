@@ -19,6 +19,7 @@ interface FormContainerProps {
     styles?: CSS.Properties;
     children?: React.ReactNode;
     steps: Step[];
+    transition?: string;
 }
 
 const Container = styled.div`
@@ -29,21 +30,21 @@ const Container = styled.div`
     justify-content: space-between;
 `;
 
-const FormContainer = ({ styles, steps, children }: FormContainerProps) => {
+const FormContainer = ({ styles, steps, children, transition }: FormContainerProps) => {
     const { stepForm, updateMultiStep } = useMultiStep();
 
     useEffect(() => {
         if (steps) {
             const maxPosition = steps.length - 1;
-            updateMultiStep({ ...stepForm, maxPosition });
-            steps.forEach((step) => stepForm.addStepName(step.name));
+            const stepNames = steps.map((step) => step.name);
+            updateMultiStep({ ...stepForm, maxPosition, stepNames });
         }
-    }, [steps, updateMultiStep]);
+    }, [steps]);
 
     return (
         <Container style={styles}>
             <ProgressBar />
-            <FormCarousel steps={steps} />
+            <FormCarousel steps={steps} transition={transition || ""} />
             {!React.Children.count(children) && <Controls />}
             {children}
         </Container>

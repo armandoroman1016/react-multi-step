@@ -19,6 +19,7 @@
     "noUnusedParameters": true,
     "esModuleInterop": true
   },
+  "types": ["typePatches"],
   "include": ["src", "src/contexts/FormContext.ts"],
   "exclude": ["node_modules", "dist", "example", "rollup.config.js", "./src/__tests__"]
 }

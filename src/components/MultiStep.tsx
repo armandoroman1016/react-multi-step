@@ -10,13 +10,14 @@ interface MultiStepProps {
     styles?: CSS.Properties;
     children?: React.ReactNode;
     steps: NonEmptyArray<Step>;
+    formTransition?: string;
 }
 
 const MultiStep = (props: MultiStepProps) => {
     return (
         <React.Fragment>
             <FormProvider>
-                <FormContainer steps={props.steps} />
+                <FormContainer steps={props.steps} transition={props.formTransition || ""} />
             </FormProvider>
         </React.Fragment>
     );

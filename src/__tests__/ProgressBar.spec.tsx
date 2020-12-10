@@ -15,6 +15,7 @@ describe("ProgressBar", () => {
         const x = render(<ProgressBar />, { providerProps });
         expect(x).toMatchSnapshot();
     });
+
     it("displays all of the steps", async () => {
         const { queryByText } = render(<ProgressBar />, { providerProps });
         const first = await queryByText(/one/);
@@ -28,8 +29,18 @@ describe("ProgressBar", () => {
         expect(fourth).toBeInTheDocument();
     });
     it("displays '✓' on completed steps", async () => {
-        const { container } = render(<ProgressBar />, { providerProps: { ...providerProps, currentPosition: 1 } });
-        const x = container.querySelector(".step-idx.completed");
+        const g = render(<ProgressBar />, { providerProps: { ...providerProps, currentPosition: 1 } });
+        const x = g.container.querySelector(".step-idx.completed");
         expect(x.textContent).toBe("✓");
+    });
+    it("will not apply 'error' class when there is no error", () => {
+        const { container } = render(<ProgressBar />, { providerProps });
+        const x = container.querySelector(".step-idx");
+        expect(x.classList.contains("error")).toBe(false);
+    });
+    it("will apply 'error' class when there is an error", () => {
+        const { container } = render(<ProgressBar />, { providerProps: { ...providerProps, errors: true } });
+        const x = container.querySelector(".step-idx");
+        expect(x.classList.contains("error")).toBe(true);
     });
 });

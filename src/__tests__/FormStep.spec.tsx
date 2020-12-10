@@ -1,7 +1,6 @@
 import * as React from "react";
 import { render } from "../utils/test-utils";
 import FormStep from "../components/FormStep";
-import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/extend-expect";
 
 import { Test } from "../test_components/mock";
