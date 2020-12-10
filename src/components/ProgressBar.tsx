@@ -12,13 +12,12 @@ interface ProgressBarProps {
     incompleteFontColor?: string;
     errorBackground?: string;
     errorFontColor?: string;
-    containerClass?: string;
     labelColor?: string;
     font?: string;
     completeLabelColor?: string;
     activeLabelColor?: string;
     errorLabelColor?: string;
-    uncompleteLabelColor?: string;
+    incompleteLabelColor?: string;
 }
 
 const ProgressContainer = styled.div`
@@ -120,7 +119,7 @@ const StepLabel = styled.div<ProgressBarProps>`
     }
 
     &.uncomplete {
-        color: ${({ uncompleteLabelColor }) => uncompleteLabelColor || "#d3d3d3"};
+        color: ${({ incompleteLabelColor }) => incompleteLabelColor || "#d3d3d3"};
     }
 `;
 
@@ -150,7 +149,7 @@ const ProgressBar = (props: ProgressBarProps) => {
     };
 
     return (
-        <ProgressContainer className={props.containerClass}>
+        <ProgressContainer>
             {stepNames &&
                 stepNames.map((name, idx) => {
                     return (
@@ -178,7 +177,7 @@ const ProgressBar = (props: ProgressBarProps) => {
                                     completeLabelColor={props.completeLabelColor}
                                     activeLabelColor={props.activeLabelColor}
                                     errorLabelColor={props.errorLabelColor}
-                                    uncompleteLabelColor={props.uncompleteLabelColor}
+                                    incompleteLabelColor={props.incompleteLabelColor}
                                     errorFontColor={props.errorFontColor}
                                     activeBackground={props.activeBackground}
                                 >
