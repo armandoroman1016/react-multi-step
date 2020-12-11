@@ -5,9 +5,12 @@
 React Multi Step is a NPM package for easily building multi-step-forms with React.
 This package will provide you the Components and utilities to quickly build a multi-step-form.
 
-**Install**
+## Installation
+
 `npm install react-multi-step`
+
 or
+
 `yarn add react-multi-step`
 
 ## Usage
@@ -20,10 +23,10 @@ or
 
 This will be the _only required component_ to create a multi-step-form with this package.
 Props
-| Name           | Description                                                      | Required |
-| -------------- | ---------------------------------------------------------------- | -------- |
-| steps          | Array of objects, each object has a component and label property | true     |
-| formTransition | CSS transition string                                            | false    |
+| Name           | Description                                                      | Type   | Required |
+| -------------- | ---------------------------------------------------------------- | ------ | -------- |
+| steps          | Array of objects, each object has a component and label property | ```array```  | true     |
+| formTransition | CSS Transition between each step                                 | ```string``` | false    |
 Children
 
 1. ProgressBar
@@ -65,20 +68,20 @@ const EasyMultiForm = () => {
 The ProgressBar component is rendered by default when using the MultiStep component. In order to easily style the progress bar you can render the ProgressBar as a child of MultiStep.
 
 Props - None Required
-| Name                 | Description                                                                           |
-| -------------------- | ------------------------------------------------------------------------------------- |
-| completedBackground  | Background color of completed step(s)                                                 |
-| completedFontColor   | Font color of completed step(s)                                                       |
-| activeBackground     | Background color of active step                                                       |
-| activeFontColor      | Font color of active step                                                             |
-| incompleteBackground | Background color of incomplete step(s)                                                |
-| incompleteFontColor  | Font color of incomplete step(s)                                                      |
-| errorBackground      | Background color of step with error                                                   |
-| errorFontColor       | Font color of step with error                                                         |
-| labelColor           | Font color of every label (will be applied to all labels regardless of current state) |
-| completeLabelColor   | Font color for the label of complete step(s)                                          |
-| activeLabelColor     | Font color for the label of active step                                               |
-| incompleteLabelColor | Font color for the label of incomplete steps(s)                                       |
+| Name                 | Description                                                                           | Type         | Required |
+| -------------------- | ------------------------------------------------------------------------------------- | ------------ | -------- |
+| completedBackground  | Background color of completed step(s)                                                 | ```string``` | false     |
+| completedFontColor   | Font color of completed step(s)                                                       | ```String``` | false     |
+| activeBackground     | Background color of active step                                                       | ```string``` | false     |
+| activeFontColor      | Font color of active step                                                             | ```string``` | false     |
+| incompleteBackground | Background color of incomplete step(s)                                                | ```string``` | false     |
+| incompleteFontColor  | Font color of incomplete step(s)                                                      | ```string``` | false     |
+| errorBackground      | Background color of step with error                                                   | ```string``` | false     |
+| errorFontColor       | Font color of step with error                                                         | ```string``` | false     |
+| labelColor           | Font color of every label (will be applied to all labels regardless of current state) | ```string``` | false     |
+| completeLabelColor   | Font color for the label of complete step(s)                                          | ```string``` | false     |
+| activeLabelColor     | Font color for the label of active step                                               | ```string``` | false     |
+| incompleteLabelColor | Font color for the label of incomplete steps(s)                                       | ```string``` | false     |
 
 Example
 
@@ -106,13 +109,13 @@ const EasyMultiForm = () => {
 
 Like the ProgressBar component, the Controls component is rendered by default. In order to easily customize your controls render Controls as a child of MultiStep.
 
-Props - None Required
-| Name           | Description                                                                               |
-| -------------- | ----------------------------------------------------------------------------------------- |
-| buttonStyles   | Style object to be applied to each of the default buttons                                 |
-| prevButtonText | Inner text of the default 'previous' button                                               |
-| nextButtonText | Inner text of the default 'previous' button                                               |
-| controls       | Object with 'next' and 'prev' properties where you can assign your own control components |
+Props -
+| Name           | Description                                                                               | type         | required |
+| -------------- | ----------------------------------------------------------------------------------------- | ------------ | -------- |
+| buttonStyles   | CSS styles to be applied to each of the default buttons                                   | ```object``` | false     |
+| prevButtonText | Inner text of the default 'previous' button                                               | ```string``` | false     |
+| nextButtonText | Inner text of the default 'next' button                                                   | ```string``` | false     |
+| controls       | Object with 'next' and 'prev' properties where you can assign your own control components | ```object``` | false     |
 
 
 Examples
@@ -181,7 +184,7 @@ Example
 
 #### Retrieving Form Values
 
-Once your final step is complete you can easily grab all of your values using the ```complete``` function, which will return the an object with the field values from every step. You can use this function at any step but you will most likely use it only on your last step. 
+Upon completion of your final step you can easily retrieve all of your values using the ```complete``` function, which will return the an object with the field values from every step. You can use this function at any step but you will most likely use it only on your last step. 
 
 Example
 ```
@@ -205,15 +208,53 @@ Example
     };
 ```
 
-### `yarn start`
+## Additional
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Using your own controls
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+When using your own controls your component will receive a function -```toggleSteps```- via props. You will need to utilize this function to toggle between steps.
 
-### `yarn test`
+Arguments for ```toggleSteps```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1) "increment" | "decrement"
+
+Example
+```
+    ...
+    const MyCustomControl = ({ toggleSteps }) => {
+
+        return (
+            <>
+                <button onClick = {() => toggleSteps("increment")}></button>
+            </>
+        )
+    }
+```
+
+### Handling errors
+
+When a field in your form has invalid input you can disable toggling between steps with the ```setError``` function.
+
+```
+    import React, { useState } from "react";
+    import { useMultiStep } from "react-multi-step";
+
+    const MyForm = () => {
+        ...
+        const { setError, stepForm } = useMultiStep();
+
+        const handleChange = (e) => {
+            ...
+            if(e.target.length < 8) setError(true) // will disable toggling between steps
+            
+            else if(stepForm.error) setError(false)
+        };
+
+        return (
+            <form onSubmit={handleSubmit}>
+                <label>Name</label>
+                <input type="text" value={val} name="name" onChange={handleChange} />
+            </form>
+        );
+    };
+```
