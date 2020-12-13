@@ -10,7 +10,6 @@ interface ControlButtons {
 }
 interface ControlProps {
     buttonStyles?: CSS.Properties;
-    submitFunction?: React.MouseEventHandler<HTMLButtonElement>;
     controls?: ControlButtons;
     prevButtonText?: string;
     nextButtonText?: string;
