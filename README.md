@@ -5,7 +5,7 @@
 React Multi Step is a NPM package for easily building multi-step-forms with React.
 This package will provide you the Components and utilities to quickly build a multi-step-form.
 
-## Installation
+## Install
 
 `npm install react-multi-step`
 
@@ -258,3 +258,12 @@ When a field in your form has invalid input you can disable toggling between ste
         );
     };
 ```
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+## 📃 License
+
+Copyright &#169; 2020 Armando Roman
+This project is MIT licensed.
