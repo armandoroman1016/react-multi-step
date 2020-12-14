@@ -27,6 +27,7 @@ Props
 | -------------- | ---------------------------------------------------------------- | ------ | -------- |
 | steps          | Array of objects, each object has a component and label property | ```array```  | true     |
 | formTransition | CSS Transition between each step                                 | ```string``` | false    |
+
 Children
 
 1. ProgressBar
@@ -105,7 +106,7 @@ const EasyMultiForm = () => {
 
 ### Controls
 
-```import { Controls } from '@armandoroman1016/react-multi-step-form```
+```import { Controls } from '@armandoroman1016/react-multi-step-form'```
 
 Like the ProgressBar component, the Controls component is rendered by default. In order to easily customize your controls render Controls as a child of MultiStep.
 
