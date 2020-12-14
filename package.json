@@ -1,9 +1,10 @@
 {
-  "name": "react-multi-step",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@armandoroman1016/react-multi-step-form",
+  "version": "0.1.4",
   "main": "dist/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "styled-components": "^5.2.1"
+  },
   "files": [
     "dist"
   ],
@@ -77,7 +78,6 @@
     "rollup": "^2.34.2",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.29.0",
-    "styled-components": "^5.2.1",
     "typescript": "^3.9.7"
   },
   "husky": {
