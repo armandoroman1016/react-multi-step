@@ -7,11 +7,11 @@ This package will provide you the Components and utilities to quickly build a mu
 
 ## Install
 
-`npm install react-multi-step`
+`npm install @armandoroman1016/react-multi-step-form`
 
 or
 
-`yarn add react-multi-step`
+`yarn add @armandoroman1016/react-multi-step-form`
 
 ## Usage
 
@@ -19,7 +19,7 @@ or
 
 ### MultiStep
 
-`import MultiStep from 'react-multi-step'`
+`import MultiStep from '@armandoroman1016/react-multi-step-form'`
 
 This will be the _only required component_ to create a multi-step-form with this package.
 Props
@@ -36,7 +36,7 @@ Example
 
 ```
 import React from react
-import MultiStep from 'react-multi-step'
+import MultiStep from '@armandoroman1016/react-multi-step-form'
 import { FormOne, FormTwo, FormThree } from '../your/components'
 
 const EasyMultiForm = () => {
@@ -64,7 +64,7 @@ const EasyMultiForm = () => {
 
 ### ProgressBar
 
-```import { ProgressBar } from 'react-multi-step```
+```import { ProgressBar } from '@armandoroman1016/react-multi-step-form```
 The ProgressBar component is rendered by default when using the MultiStep component. In order to easily style the progress bar you can render the ProgressBar as a child of MultiStep.
 
 Props - None Required
@@ -87,7 +87,7 @@ Example
 
 ```
 import React from react
-import MultiStep, { ProgressBar } from 'react-multi-step'
+import MultiStep, { ProgressBar } from '@armandoroman1016/react-multi-step-form'
 import { FormOne, FormTwo, FormThree } from '../your/components'
 
 const EasyMultiForm = () => {
@@ -105,7 +105,7 @@ const EasyMultiForm = () => {
 
 ### Controls
 
-```import { Controls } from 'react-multi-step```
+```import { Controls } from '@armandoroman1016/react-multi-step-form```
 
 Like the ProgressBar component, the Controls component is rendered by default. In order to easily customize your controls render Controls as a child of MultiStep.
 
@@ -117,11 +117,11 @@ Props -
 | nextButtonText | Inner text of the default 'next' button                                                   | ```string``` | false     |
 | controls       | Object with 'next' and 'prev' properties where you can assign your own control components | ```object``` | false     |
 
-
 Examples
+
 ```
 import React from react
-import MultiStep, { Controls } from 'react-multi-step'
+import MultiStep, { Controls } from '@armandoroman1016/react-multi-step-form'
 import { FormOne, FormTwo, FormThree } from '../your/components'
 import { MyCustomPrevBtn, MyCustomNxtBtn } from '../your/components'
 
@@ -138,8 +138,6 @@ const OverrideStyles = () => {
     )
 }
 
-
-// Providing your own custom control
 const CustomComponents = () => {
     return (
         <div>
@@ -151,6 +149,7 @@ const CustomComponents = () => {
         <div>
     )
 }
+
 ```
 
 ### Collecting Form Data
@@ -163,7 +162,7 @@ This function will store the values which you can retrieve upon final step submi
 Example
 ```
     import React, { useState } from "react";
-    import { useMultiStep } from "react-multi-step";
+    import { useMultiStep } from "@armandoroman1016/react-multi-step-form";
 
     const MyForm = () => {
         ...
@@ -189,7 +188,7 @@ Upon completion of your final step you can easily retrieve all of your values us
 Example
 ```
     import React, { useState } from "react";
-    import { useMultiStep } from "react-multi-step";
+    import { useMultiStep } from "@armandoroman1016/react-multi-step-form";
 
     const MyForm = () => {
         ...
@@ -237,7 +236,7 @@ When a field in your form has invalid input you can disable toggling between ste
 
 ```
     import React, { useState } from "react";
-    import { useMultiStep } from "react-multi-step";
+    import { useMultiStep } from "@armandoroman1016/react-multi-step-form";
 
     const MyForm = () => {
         ...
