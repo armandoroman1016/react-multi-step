@@ -6,22 +6,22 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="ProgressBar__ProgressContainer-sc-15e9afs-0 cZbfYF"
+        class="ProgressBar__ProgressContainer-ky16r3-0 ga-Dltg"
       >
         <div
           class="progress-step"
           style="width: 20%;"
         >
           <div
-            class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
+            class="ProgressBar__StepItem-ky16r3-1 NvjJD step-wrapper"
           >
             <div
-              class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx first current"
+              class="ProgressBar__StepInfo-ky16r3-2 itAzqr step-idx first current"
             >
               1
             </div>
             <div
-              class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label first current"
+              class="ProgressBar__StepLabel-ky16r3-3 dgfemv label first current"
             >
               one
             </div>
@@ -32,15 +32,15 @@ Object {
           style="width: 20%;"
         >
           <div
-            class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
+            class="ProgressBar__StepItem-ky16r3-1 NvjJD step-wrapper"
           >
             <div
-              class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
+              class="ProgressBar__StepInfo-ky16r3-2 itAzqr step-idx uncomplete"
             >
               2
             </div>
             <div
-              class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
+              class="ProgressBar__StepLabel-ky16r3-3 dgfemv label uncomplete"
             >
               two
             </div>
@@ -51,15 +51,15 @@ Object {
           style="width: 20%;"
         >
           <div
-            class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
+            class="ProgressBar__StepItem-ky16r3-1 NvjJD step-wrapper"
           >
             <div
-              class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
+              class="ProgressBar__StepInfo-ky16r3-2 itAzqr step-idx uncomplete"
             >
               3
             </div>
             <div
-              class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
+              class="ProgressBar__StepLabel-ky16r3-3 dgfemv label uncomplete"
             >
               three
             </div>
@@ -70,15 +70,15 @@ Object {
           style="width: 20%;"
         >
           <div
-            class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
+            class="ProgressBar__StepItem-ky16r3-1 NvjJD step-wrapper"
           >
             <div
-              class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
+              class="ProgressBar__StepInfo-ky16r3-2 itAzqr step-idx uncomplete"
             >
               4
             </div>
             <div
-              class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
+              class="ProgressBar__StepLabel-ky16r3-3 dgfemv label uncomplete"
             >
               four
             </div>
@@ -89,22 +89,22 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="ProgressBar__ProgressContainer-sc-15e9afs-0 cZbfYF"
+      class="ProgressBar__ProgressContainer-ky16r3-0 ga-Dltg"
     >
       <div
         class="progress-step"
         style="width: 20%;"
       >
         <div
-          class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
+          class="ProgressBar__StepItem-ky16r3-1 NvjJD step-wrapper"
         >
           <div
-            class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx first current"
+            class="ProgressBar__StepInfo-ky16r3-2 itAzqr step-idx first current"
           >
             1
           </div>
           <div
-            class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label first current"
+            class="ProgressBar__StepLabel-ky16r3-3 dgfemv label first current"
           >
             one
           </div>
@@ -115,15 +115,15 @@ Object {
         style="width: 20%;"
       >
         <div
-          class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
+          class="ProgressBar__StepItem-ky16r3-1 NvjJD step-wrapper"
         >
           <div
-            class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
+            class="ProgressBar__StepInfo-ky16r3-2 itAzqr step-idx uncomplete"
           >
             2
           </div>
           <div
-            class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
+            class="ProgressBar__StepLabel-ky16r3-3 dgfemv label uncomplete"
           >
             two
           </div>
@@ -134,15 +134,15 @@ Object {
         style="width: 20%;"
       >
         <div
-          class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
+          class="ProgressBar__StepItem-ky16r3-1 NvjJD step-wrapper"
         >
           <div
-            class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
+            class="ProgressBar__StepInfo-ky16r3-2 itAzqr step-idx uncomplete"
           >
             3
           </div>
           <div
-            class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
+            class="ProgressBar__StepLabel-ky16r3-3 dgfemv label uncomplete"
           >
             three
           </div>
@@ -153,15 +153,15 @@ Object {
         style="width: 20%;"
       >
         <div
-          class="ProgressBar__StepItem-sc-15e9afs-1 dpFkCC step-wrapper"
+          class="ProgressBar__StepItem-ky16r3-1 NvjJD step-wrapper"
         >
           <div
-            class="ProgressBar__StepInfo-sc-15e9afs-2 bKMhpD step-idx uncomplete"
+            class="ProgressBar__StepInfo-ky16r3-2 itAzqr step-idx uncomplete"
           >
             4
           </div>
           <div
-            class="ProgressBar__StepLabel-sc-15e9afs-3 hheRIi label uncomplete"
+            class="ProgressBar__StepLabel-ky16r3-3 dgfemv label uncomplete"
           >
             four
           </div>
