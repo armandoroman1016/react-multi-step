@@ -49,7 +49,6 @@ const StepInfo = styled.div<ProgressBarProps>`
     background: #fff;
     border: 1px solid #d3d3d3;
     color: #d3d3d3;
-    font: ${({ font }) => font || ""};
 
     &::before {
         position: absolute;
@@ -138,7 +137,7 @@ const ProgressBar = (props: ProgressBarProps) => {
 
         if (idx === 0) str += "first ";
         if (currentPosition === idx && errors) return str + "current error";
-        if (currentPosition === idx) return str + "current";
+        if (currentPosition === idx && !stepForm.completed) return str + "current";
         if (currentPosition > idx || currentPosition === maxPosition || stepForm.completed) return str + "completed";
         return str + "uncomplete";
     };
